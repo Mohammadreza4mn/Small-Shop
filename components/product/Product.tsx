@@ -1,4 +1,7 @@
 import styles from "../../styles/Product.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import * as actionTypes from "../../redux/action";
+import Button from "@material-ui/core/Button";
 
 export interface IProduct {
   location: { postcode: number; street: { number: number } };
@@ -9,6 +12,7 @@ export interface IProduct {
   picture: {
     medium: string;
   };
+  count: number;
 }
 
 interface IProductProps {
@@ -16,6 +20,16 @@ interface IProductProps {
 }
 
 const Product = (props: IProductProps) => {
+  const dispatch = useDispatch();
+  const { basket }: { basket: IProduct[] } = useSelector((state) => state);
+
+  const handleAddToBasket = (product: IProduct) => {
+    dispatch({
+      type: actionTypes.addProduct,
+      payload: { ...product, count: 1 },
+    });
+  };
+
   return (
     <div className={styles.product}>
       <h2
@@ -31,9 +45,18 @@ const Product = (props: IProductProps) => {
         <div className={styles.product__price}>
           ${props.product.location.postcode}
         </div>
-        <button className={`snipcart-add-item ${styles.product__button}`}>
+        <Button
+          variant="contained"
+          color="primary"
+          disabled={basket.some(
+            (item) =>
+              item.location.street.number ==
+              props.product.location.street.number
+          )}
+          onClick={() => handleAddToBasket(props.product)}
+        >
           Add to cart
-        </button>
+        </Button>
       </div>
     </div>
   );

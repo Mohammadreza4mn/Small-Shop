@@ -1,4 +1,3 @@
-import Script from "next/script";
 import ProductList from "../components/productList/ProductList";
 import Contact from "../components/contact/Contact";
 import Head from "next/head";
@@ -29,13 +28,6 @@ export default function Home({ products }: IProductListProps) {
         <ProductList products={products} />
         <Contact />
       </main>
-      <Script src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js" />
-      <div
-        hidden
-        id="snipcart"
-        data-api-key="OWNlZTNlYmItZTU5OS00MmI4LThjOTAtMjY0NzAyYmI2ODAxNjM3NjIyMjY3MDMxMTIzMzUx
-"
-      ></div>
     </>
   );
 }
