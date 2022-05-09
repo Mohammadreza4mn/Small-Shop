@@ -1,0 +1,16 @@
+export const setAllData = "setAllData";
+export const setUserAccount = "setUserAccount";
+export const setSignUp = "setSignUp";
+export const setStatus = "setStatus";
+export const setName = "setName";
+export const setValidateForm = "setValidateForm";
+export const setValidatesignUp = "setValidatesignUp";
+export const setResultCalculator = "setResultCalculator";
+export const setSnackbar = "setSnackbar";
+export const setLoading = "setLoading";
+export const setUserData = "setUserData";
+export const setTableRow = "setTableRow";
+export const percentageApiRequest = "percentageApiRequest";
+export const percentageApiFailed = "percentageApiFailed";
+export const percentageApiSucceed = "percentageApiSucceed";
+export const checkIp = "checkIp";

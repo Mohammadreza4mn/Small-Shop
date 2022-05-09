@@ -1,18 +1,13 @@
-import Image from "next/image";
 import styles from "../../styles/Product.module.scss";
 
 export interface IProduct {
-  id: string;
-  name: string;
-  price: number;
-  url: string;
-  description: string;
-  // image: StaticImageData
-  image: {
-    src: string;
-    height: number;
-    width: number;
-    blurDataURL?: string;
+  location: { postcode: number; street: { number: number } };
+  name: {
+    first: string;
+    last: string;
+  };
+  picture: {
+    medium: string;
   };
 }
 
@@ -23,23 +18,20 @@ interface IProductProps {
 const Product = (props: IProductProps) => {
   return (
     <div className={styles.product}>
-      <h2 className={styles.product__title}>{props.product.name}</h2>
-      <p className={styles.product__description}>{props.product.description}</p>
+      <h2
+        className={styles.product__title}
+      >{`${props.product.name.first} ${props.product.name.last}`}</h2>
       <div className={styles.product__image}>
-        <Image src={props.product.image} alt={props.product.image.src} />
+        <img
+          src={props.product.picture.medium}
+          alt={`${props.product.name.first} ${props.product.name.last}`}
+        />
       </div>
       <div className="product__price-button-container">
         <div className={styles.product__price}>
-          ${props.product.price.toFixed(2)}
+          ${props.product.location.postcode}
         </div>
-        <button
-          className={`snipcart-add-item ${styles.product__button}`}
-          data-item-id={props.product.id}
-          data-item-name={props.product.name}
-          data-item-price={props.product.price}
-          data-item-url={props.product.url}
-          data-item-image={props.product.image.src}
-        >
+        <button className={`snipcart-add-item ${styles.product__button}`}>
           Add to cart
         </button>
       </div>
