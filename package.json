@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "start json-server --watch db.json --port 3001 && start next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start-json": "start json-server --watch db.json --port 3001"
   },
   "dependencies": {
     "@emotion/cache": "^11.7.1",

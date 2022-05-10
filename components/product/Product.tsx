@@ -1,4 +1,3 @@
-import styles from "../../styles/Product.module.scss";
 import { useDispatch } from "react-redux";
 import { addBasketAPI } from "../../libs/api";
 import * as actionTypes from "../../redux/action";
