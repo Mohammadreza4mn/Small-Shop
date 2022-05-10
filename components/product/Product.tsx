@@ -1,64 +1,74 @@
 import styles from "../../styles/Product.module.scss";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addBasketAPI } from "../../libs/api";
 import * as actionTypes from "../../redux/action";
-import Button from "@material-ui/core/Button";
+import {
+  Button,
+  Card,
+  CardActionArea,
+  CardMedia,
+  CardContent,
+  Typography,
+  CardActions,
+  makeStyles,
+} from "@material-ui/core";
 
 export interface IProduct {
-  location: { postcode: number; street: { number: number } };
-  name: {
-    first: string;
-    last: string;
-  };
-  picture: {
-    medium: string;
-  };
+  id: number;
+  name: string;
+  price: number;
+  img: string;
   count: number;
+  description: string;
 }
 
-interface IProductProps {
-  product: IProduct;
-}
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 220,
+  },
+});
 
-const Product = (props: IProductProps) => {
+const Product = ({ product }: { product: IProduct }) => {
   const dispatch = useDispatch();
-  const { basket }: { basket: IProduct[] } = useSelector((state) => state);
+  const classes = useStyles();
 
   const handleAddToBasket = (product: IProduct) => {
-    dispatch({
-      type: actionTypes.addProduct,
-      payload: { ...product, count: 1 },
-    });
+    addBasketAPI(product).then(() => alert("200"));
   };
 
   return (
-    <div className={styles.product}>
-      <h2
-        className={styles.product__title}
-      >{`${props.product.name.first} ${props.product.name.last}`}</h2>
-      <div className={styles.product__image}>
-        <img
-          src={props.product.picture.medium}
-          alt={`${props.product.name.first} ${props.product.name.last}`}
+    <Card className={classes.root}>
+      <CardActionArea>
+        <CardMedia
+          className={classes.media}
+          image={product.img}
+          title={product.name}
         />
-      </div>
-      <div className="product__price-button-container">
-        <div className={styles.product__price}>
-          ${props.product.location.postcode}
-        </div>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {product.name}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {product.description}
+          </Typography>
+          <Typography gutterBottom variant="subtitle1" component="h2">
+            {product.price.toLocaleString()}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
         <Button
-          variant="contained"
+          size="small"
           color="primary"
-          disabled={basket.some(
-            (item) =>
-              item.location.street.number ==
-              props.product.location.street.number
-          )}
-          onClick={() => handleAddToBasket(props.product)}
+          onClick={() => handleAddToBasket(product)}
         >
           Add to cart
         </Button>
-      </div>
-    </div>
+      </CardActions>
+    </Card>
   );
 };
 

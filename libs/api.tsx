@@ -16,4 +16,6 @@ export const getPercentageAPI = async (fname, sname) => {
     return response;
 };
 export const checkIpAPI = () => axios.get('https://ipwhois.app/json/?objects=country,success,message');
-export const listUserAPI = (results) => axios.get(`https://randomuser.me/api/?inc=picture,name,location&results=${results}`);
+export const productListAPI = () => axios.get("http://localhost:3001/products");
+export const addBasketAPI = (data) =>
+  axios.post("http://localhost:3001/shoppingCart", data);
