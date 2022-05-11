@@ -1,10 +1,9 @@
 import { AppBar, Toolbar, Badge, IconButton } from "@material-ui/core";
 import Link from "next/link";
-import { IProduct } from "../../components/product/Product";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { IinistialState } from "../../redux/reducer";
+import { IinistialState } from "../../utils/interface";
 
 export default function Header() {
   const { basket } = useSelector<IinistialState, IinistialState>(
@@ -31,8 +30,8 @@ export default function Header() {
     <AppBar position="fixed">
       <Toolbar>
         <Link href="/shopping-cart">
-          <IconButton color="secondary">
-            <Badge badgeContent={count} color="primary">
+          <IconButton>
+            <Badge badgeContent={count} color="error">
               <ShoppingCartIcon fontSize="large" />
             </Badge>
           </IconButton>

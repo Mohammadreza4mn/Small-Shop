@@ -3,58 +3,56 @@ import * as actionTypes from "../../redux/action";
 import {
   Button,
   Card,
-  CardActionArea,
   CardMedia,
   CardContent,
   Typography,
   CardActions,
   makeStyles,
+  Divider,
 } from "@material-ui/core";
 import NumberControl from "../numberControl/NumberControl";
+import { productStyles } from "../../assets/jss/style";
+import { IProduct } from "../../utils/interface";
 
-export interface IProduct {
-  id: number;
-  name: string;
-  price: number;
-  img: string;
-  count?: number;
-  description: string;
-}
-
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 220,
-  },
-});
+const useStyles = makeStyles(productStyles);
 
 const Product = ({ product }: { product: IProduct }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
+
   const { basket }: { basket: IProduct[] } = useSelector((state) => state);
 
   return (
     <Card className={classes.root}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image={product.img}
-          title={product.name}
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {product.name}
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            {product.description}
-          </Typography>
-          <Typography gutterBottom variant="subtitle1" component="h2">
-            {product.price.toLocaleString()}
-          </Typography>
-        </CardContent>
-      </CardActionArea>
+      <CardMedia
+        className={classes.media}
+        image={product.img}
+        title={product.name}
+      />
+      <Divider />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="h2">
+          {product.name}
+        </Typography>
+        <Typography
+          className={classes.description}
+          variant="body2"
+          color="textSecondary"
+          component="p"
+        >
+          {product.description}
+        </Typography>
+        <Divider />
+        <Typography
+          className={classes.price}
+          dir="ltr"
+          variant="body1"
+          component="p"
+        >
+          {`${product.price.toLocaleString()} تومان`}
+        </Typography>
+        <Divider />
+      </CardContent>
       <CardActions>
         {basket.some(({ id }) => id == product.id) ? (
           <NumberControl product={basket.find(({ id }) => id == product.id)} />
@@ -62,6 +60,7 @@ const Product = ({ product }: { product: IProduct }) => {
           <Button
             size="small"
             color="primary"
+            variant="contained"
             onClick={() =>
               dispatch({
                 type: actionTypes.addProductServer,
@@ -69,7 +68,7 @@ const Product = ({ product }: { product: IProduct }) => {
               })
             }
           >
-            Add to cart
+            افزودن به سبد خرید
           </Button>
         )}
       </CardActions>

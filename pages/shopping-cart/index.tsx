@@ -8,7 +8,7 @@ import {
   ListItemSecondaryAction,
   IconButton,
 } from "@material-ui/core";
-import { IProduct } from "../../components/product/Product";
+import { IProduct } from "../../utils/interface";
 
 import * as actionTypes from "../../redux/action";
 import Link from "next/link";

@@ -1,14 +1,6 @@
-import {
-  List,
-  ListItem,
-  ListItemAvatar,
-  Avatar,
-  ListItemText,
-  ListItemSecondaryAction,
-  IconButton,
-} from "@material-ui/core";
+import { IconButton, Box } from "@material-ui/core";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as actionTypes from "../../redux/action";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
@@ -18,7 +10,7 @@ export default function NumberControl({ product }) {
   const dispatch = useDispatch();
 
   return (
-    <div>
+    <Box>
       <IconButton
         onClick={() =>
           dispatch({
@@ -50,8 +42,8 @@ export default function NumberControl({ product }) {
           });
         }}
       >
-        <DeleteIcon />
+        <DeleteIcon color="error" />
       </IconButton>
-    </div>
+    </Box>
   );
 }

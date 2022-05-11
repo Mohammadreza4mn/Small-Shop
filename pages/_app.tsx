@@ -3,8 +3,8 @@ import Layout from "../components/layout/Layout";
 import { wrapper } from "../redux/store";
 import { ThemeProvider, CssBaseline } from "@material-ui/core";
 import { CacheProvider, EmotionCache } from "@emotion/react";
-import theme from "../src/theme";
-import createEmotionCache from "../src/createEmotionCache";
+import theme from "../utils/theme";
+import createEmotionCache from "../utils/createEmotionCache";
 
 const clientSideEmotionCache = createEmotionCache();
 

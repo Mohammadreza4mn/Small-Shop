@@ -1,6 +1,6 @@
 import ProductList from "../components/productList/ProductList";
 import Head from "next/head";
-import { IProduct } from "../components/product/Product";
+import { IProduct } from "../utils/interface";
 import { GetServerSideProps } from "next";
 import { productListAPI } from "../libs/api";
 import { wrapper } from "../redux/store";
