@@ -1,5 +1,4 @@
-import { useDispatch } from "react-redux";
-import { addBasketAPI } from "../../libs/api";
+import { useDispatch, useSelector } from "react-redux";
 import * as actionTypes from "../../redux/action";
 import {
   Button,
@@ -11,13 +10,14 @@ import {
   CardActions,
   makeStyles,
 } from "@material-ui/core";
+import NumberControl from "../numberControl/NumberControl";
 
 export interface IProduct {
   id: number;
   name: string;
   price: number;
   img: string;
-  count: number;
+  count?: number;
   description: string;
 }
 
@@ -33,10 +33,7 @@ const useStyles = makeStyles({
 const Product = ({ product }: { product: IProduct }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
-
-  const handleAddToBasket = (product: IProduct) => {
-    addBasketAPI(product).then(() => alert("200"));
-  };
+  const { basket }: { basket: IProduct[] } = useSelector((state) => state);
 
   return (
     <Card className={classes.root}>
@@ -59,13 +56,22 @@ const Product = ({ product }: { product: IProduct }) => {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button
-          size="small"
-          color="primary"
-          onClick={() => handleAddToBasket(product)}
-        >
-          Add to cart
-        </Button>
+        {basket.some(({ id }) => id == product.id) ? (
+          <NumberControl product={basket.find(({ id }) => id == product.id)} />
+        ) : (
+          <Button
+            size="small"
+            color="primary"
+            onClick={() =>
+              dispatch({
+                type: actionTypes.addProductServer,
+                payload: { ...product, count: 1 },
+              })
+            }
+          >
+            Add to cart
+          </Button>
+        )}
       </CardActions>
     </Card>
   );

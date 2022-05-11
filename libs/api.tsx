@@ -1,21 +1,13 @@
 import axios from "axios";
 
-export const getPercentageAPI = async (fname, sname) => {
+const localhost = axios.create({
+  baseURL: "http://localhost:3001/",
+});
 
-    const response = await axios.request(
-        {
-            method: 'GET',
-            url: 'https://love-calculator.p.rapidapi.com/getPercentage',
-            params: { fname: fname, sname: sname },
-            headers: {
-                'x-rapidapi-key': 'dcedb73688mshcfac6f6124da828p19d4ddjsn5532507128b0',
-                'x-rapidapi-host': 'love-calculator.p.rapidapi.com'
-            }
-        }
-    );
-    return response;
-};
-export const checkIpAPI = () => axios.get('https://ipwhois.app/json/?objects=country,success,message');
-export const productListAPI = () => axios.get("http://localhost:3001/products");
-export const addBasketAPI = (data) =>
-  axios.post("http://localhost:3001/shoppingCart", data);
+export const productListAPI = () => localhost.get("products");
+export const addBasketAPI = (data) => localhost.post("shoppingCart", data);
+export const basketListAPI = () => localhost.get("shoppingCart");
+export const updateBasketAPI = (id, data) =>
+  localhost.patch(`shoppingCart/${id}`, data);
+export const removeItemBasketAPI = (id) =>
+  localhost.delete(`shoppingCart/${id}`);

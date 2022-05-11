@@ -9,51 +9,32 @@ import {
   IconButton,
 } from "@material-ui/core";
 import { IProduct } from "../../components/product/Product";
-import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
+
 import * as actionTypes from "../../redux/action";
 import Link from "next/link";
+import { wrapper } from "../../redux/store";
+import { GetServerSideProps } from "next";
+import { END } from "redux-saga";
+import NumberControl from "../../components/numberControl/NumberControl";
 
 export default function ShoppingCart() {
-  const { basket }: { basket: IProduct[] } = useSelector((state) => state);
-  console.log(basket);
   const dispatch = useDispatch();
 
+  const { basket } = useSelector<IProduct[]>((state) => state);
+
   return (
-    <div style={{ marginTop: 70 }}>
+    <div>
       {basket.length > 0 ? (
         <List dense={true}>
           {basket.map((item, index) => (
             <ListItem key={index}>
               <ListItemAvatar>
                 <Avatar>
-                  <img src={item.picture.medium} />
+                  <img src={item.img} />
                 </Avatar>
               </ListItemAvatar>
-              <ListItemText primary={`${item.name.first} ${item.name.last}`} />
-              <ListItemSecondaryAction>
-                <IconButton
-                  onClick={() =>
-                    dispatch({
-                      type: actionTypes.incrementProduct,
-                      payload: item.location.street.number,
-                    })
-                  }
-                >
-                  <AddCircleOutlineIcon />
-                </IconButton>
-                <span>{item.count}</span>
-                <IconButton
-                  onClick={() =>
-                    dispatch({
-                      type: actionTypes.decrementProduct,
-                      payload: item.location.street.number,
-                    })
-                  }
-                >
-                  <RemoveCircleOutlineIcon />
-                </IconButton>
-              </ListItemSecondaryAction>
+              <ListItemText primary={item.name} />
+              <NumberControl product={item} />
             </ListItem>
           ))}
         </List>
@@ -63,3 +44,10 @@ export default function ShoppingCart() {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps =
+  wrapper.getServerSideProps((store) => async ({ preview }) => {
+    await store.dispatch({ type: actionTypes.getListBasket });
+    store.dispatch(END);
+    await store.sagaTask.toPromise();
+  });
