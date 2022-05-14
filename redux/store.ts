@@ -3,7 +3,6 @@ import createSagaMiddleware from "redux-saga";
 import rootReducer from "./reducers/index";
 import mySaga from "./sagas";
 import { createWrapper, Context } from "next-redux-wrapper";
-import { IinistialState } from "../utils/interface";
 
 const bindMiddleware = (middleware) => {
   return applyMiddleware(...middleware);
@@ -18,6 +17,6 @@ export const makeStore = (context: Context) => {
   return store;
 };
 
-export const wrapper = createWrapper<Store<IinistialState>>(makeStore, {
+export const wrapper = createWrapper(makeStore, {
   debug: true,
 });

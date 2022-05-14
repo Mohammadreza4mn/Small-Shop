@@ -10,7 +10,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import HomeIcon from "@material-ui/icons/Home";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { IinistialState } from "../../utils/interface";
+import { IinistialStateBasket } from "../../utils/interface";
 import { headerStyles } from "../../assets/jss/style";
 
 const useStyles = makeStyles(headerStyles);
@@ -18,7 +18,7 @@ const useStyles = makeStyles(headerStyles);
 export default function Header() {
   const classes = useStyles();
 
-  const basket = useSelector<IinistialState, IinistialState>(
+  const basket = useSelector<IinistialStateBasket, IinistialStateBasket>(
     ({ basket }) => basket.list
   );
 

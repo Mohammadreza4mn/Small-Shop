@@ -7,6 +7,11 @@ export interface IProduct {
   description: string;
 }
 
-export interface IinistialState {
+export interface IinistialStateBasket {
   list: IProduct[];
+}
+export interface IinistialStateAlert {
+  severity: string;
+  toggle: boolean;
+  message: string;
 }

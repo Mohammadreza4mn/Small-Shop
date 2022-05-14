@@ -1,9 +1,9 @@
 import { Basket } from "../action";
 import { HYDRATE } from "next-redux-wrapper";
 import { AnyAction } from "redux";
-import { IinistialState } from "../../utils/interface";
+import { IinistialStateBasket } from "../../utils/interface";
 
-const inistialState: IinistialState = {
+const inistialState: IinistialStateBasket = {
   list: [],
 };
 
