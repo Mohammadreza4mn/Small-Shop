@@ -1,3 +1,4 @@
+// basket
 export enum Basket {
   addProductServer = "addProductServer",
   addProductStore = "addProductStore",
@@ -8,7 +9,6 @@ export enum Basket {
   removeItemBasketStore = "removeItemBasketStore",
   removeItemBasketServer = "removeItemBasketServer",
 }
-
 export const addProduct = (payload, side) => {
   if (side == "client") {
     return {
@@ -59,4 +59,27 @@ export const removeItemBasket = (payload, side) => {
       payload,
     };
   }
+};
+
+// toast
+export enum Toast {
+  toggle = "toggle",
+}
+export const toastError = (message) => {
+  return {
+    type: Toast.toggle,
+    payload: { severity: "error", toggle: true, message: message },
+  };
+};
+export const toastSuccess = (message) => {
+  return {
+    type: Toast.toggle,
+    payload: { severity: "success", toggle: true, message: message },
+  };
+};
+export const toastDown = () => {
+  return {
+    type: Toast.toggle,
+    payload: { severity: "", toggle: false, message: "" },
+  };
 };

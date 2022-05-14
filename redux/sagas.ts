@@ -11,16 +11,17 @@ import {
   Basket,
   updateBasket,
   removeItemBasket,
+  toastError,
+  toastSuccess,
 } from "./action";
 
 function* handleAddToBasket(action) {
   try {
     yield call(addBasketAPI, action.payload);
-
     yield put(addProduct(action.payload, "client"));
+    yield put(toastSuccess("محصول با موفقیت به سبد خرید اضافه شد"));
   } catch (error) {
-    //yield put({ type: actionTypes.setSnackbar, payload: error.message });
-    console.log(error.message);
+    yield put(toastError(error.message));
   }
 }
 function* handleGetBasket() {
@@ -29,8 +30,7 @@ function* handleGetBasket() {
 
     yield put(getListBasket(data, "client"));
   } catch (error) {
-    //yield put({ type: actionTypes.setSnackbar, payload: error.message });
-    console.log(error.message);
+    yield put(toastError(error.message));
   }
 }
 function* handleChangeCountProduct(action) {
@@ -43,18 +43,15 @@ function* handleChangeCountProduct(action) {
 
     yield put(updateBasket(data, "client"));
   } catch (error) {
-    //yield put({ type: actionTypes.setSnackbar, payload: error.message });
-    console.log(error.message);
+    yield put(toastError(error.message));
   }
 }
 function* handleRemoveProduct(action) {
   try {
     yield call(removeItemBasketAPI, action.payload);
-
     yield put(removeItemBasket(action.payload, "client"));
   } catch (error) {
-    //yield put({ type: actionTypes.setSnackbar, payload: error.message });
-    console.log(error.message);
+    yield put(toastError(error.message));
   }
 }
 
