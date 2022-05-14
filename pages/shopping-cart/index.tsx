@@ -7,13 +7,9 @@ import {
   ListItemText,
   Button,
   Box,
-  makeStyles
+  makeStyles,
 } from "@material-ui/core";
 import { IProduct } from "../../utils/interface";
-import * as actionTypes from "../../redux/action";
-import { wrapper } from "../../redux/store";
-import { GetServerSideProps } from "next";
-import { END } from "redux-saga";
 import NumberControl from "../../components/numberControl/NumberControl";
 import { useRouter } from "next/router";
 import { shoppingCartStyles } from "../../assets/jss/style";
@@ -59,10 +55,3 @@ export default function ShoppingCart() {
     </div>
   );
 }
-
-export const getServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps((store) => async ({ preview }) => {
-    await store.dispatch({ type: actionTypes.getListBasket });
-    store.dispatch(END);
-    await store.sagaTask.toPromise();
-  });

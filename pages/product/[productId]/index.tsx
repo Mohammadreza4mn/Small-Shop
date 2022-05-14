@@ -9,18 +9,16 @@ import {
   makeStyles,
   Divider,
 } from "@material-ui/core";
-import { IProduct } from "../../../utils/interface";
-import * as actionTypes from "../../../redux/action";
+import { addProduct } from "../../../redux/action";
 import { wrapper } from "../../../redux/store";
 import { GetServerSideProps } from "next";
-import { END } from "redux-saga";
 import NumberControl from "../../../components/numberControl/NumberControl";
 import { productInfoAPI } from "../../../libs/api";
 import { productStyles } from "../../../assets/jss/style";
 
 const useStyles = makeStyles(productStyles);
 
-export default function Product({ productInfo, test }) {
+export default function Product({ productInfo }) {
   const dispatch = useDispatch();
   const classes = useStyles();
 
@@ -62,12 +60,7 @@ export default function Product({ productInfo, test }) {
             size="small"
             color="primary"
             variant="contained"
-            onClick={() =>
-              dispatch({
-                type: actionTypes.addProductServer,
-                payload: { ...productInfo, count: 1 },
-              })
-            }
+            onClick={() => dispatch(addProduct({ ...productInfo, count: 1 }))}
           >
             افزودن به سبد خرید
           </Button>
@@ -84,7 +77,6 @@ export const getServerSideProps: GetServerSideProps =
     return {
       props: {
         productInfo: productInfo,
-        test: store.getState(),
       },
     };
   });

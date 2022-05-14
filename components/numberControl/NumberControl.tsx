@@ -1,10 +1,9 @@
 import { IconButton, Box } from "@material-ui/core";
-
 import { useDispatch } from "react-redux";
-import * as actionTypes from "../../redux/action";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { updateBasket, removeItemBasket } from "../../redux/action";
 
 export default function NumberControl({ product }) {
   const dispatch = useDispatch();
@@ -13,10 +12,9 @@ export default function NumberControl({ product }) {
     <Box>
       <IconButton
         onClick={() =>
-          dispatch({
-            type: actionTypes.updateBasketServer,
-            payload: { id: product.id, data: { count: ++product.count } },
-          })
+          dispatch(
+            updateBasket({ id: product.id, data: { count: ++product.count } })
+          )
         }
       >
         <AddCircleOutlineIcon />
@@ -25,23 +23,15 @@ export default function NumberControl({ product }) {
       <IconButton
         onClick={() => {
           if (product.count > 1) {
-            dispatch({
-              type: actionTypes.updateBasketServer,
-              payload: { id: product.id, data: { count: --product.count } },
-            });
+            dispatch(
+              updateBasket({ id: product.id, data: { count: --product.count } })
+            );
           }
         }}
       >
         <RemoveCircleOutlineIcon />
       </IconButton>
-      <IconButton
-        onClick={() => {
-          dispatch({
-            type: actionTypes.removeProductBasketServer,
-            payload: product.id,
-          });
-        }}
-      >
+      <IconButton onClick={() => dispatch(removeItemBasket(product.id))}>
         <DeleteIcon color="error" />
       </IconButton>
     </Box>

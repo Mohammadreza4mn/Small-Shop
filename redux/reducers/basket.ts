@@ -1,4 +1,4 @@
-import * as actionTypes from "../action";
+import { Basket } from "../action";
 import { HYDRATE } from "next-redux-wrapper";
 import { AnyAction } from "redux";
 import { IinistialState } from "../../utils/interface";
@@ -12,12 +12,12 @@ const basket = (state = inistialState, action: AnyAction) => {
     case HYDRATE: {
       return { ...state, ...action.payload };
     }
-    case actionTypes.addProductStore:
+    case Basket.addProductStore:
       return {
         ...state,
         list: [...state.list, action.payload],
       };
-    case actionTypes.updateBasketStore: {
+    case Basket.updateBasketStore: {
       let flag = [...state.list];
 
       flag.splice(
@@ -31,7 +31,7 @@ const basket = (state = inistialState, action: AnyAction) => {
         list: flag,
       };
     }
-    case actionTypes.removeProductBasketStore: {
+    case Basket.removeItemBasketStore: {
       let flag = [...state.list];
 
       return {
@@ -39,7 +39,7 @@ const basket = (state = inistialState, action: AnyAction) => {
         list: flag.filter(({ id }) => id !== action.payload),
       };
     }
-    case actionTypes.setListBasket:
+    case Basket.setListBasketStore:
       return {
         ...state,
         list: action.payload,

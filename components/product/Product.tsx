@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import * as actionTypes from "../../redux/action";
+import { addProduct } from "../../redux/action";
 import {
   Button,
   Card,
@@ -65,12 +65,7 @@ const Product = ({ product }: { product: IProduct }) => {
             size="small"
             color="primary"
             variant="contained"
-            onClick={() =>
-              dispatch({
-                type: actionTypes.addProductServer,
-                payload: { ...product, count: 1 },
-              })
-            }
+            onClick={() => dispatch(addProduct({ ...product, count: 1 }))}
           >
             افزودن به سبد خرید
           </Button>
