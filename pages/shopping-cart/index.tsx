@@ -8,11 +8,13 @@ import {
   Button,
   Box,
   makeStyles,
+  Chip,
 } from "@material-ui/core";
 import { IProduct } from "../../utils/interface";
 import NumberControl from "../../components/numberControl/NumberControl";
 import { useRouter } from "next/router";
 import { shoppingCartStyles } from "../../assets/jss/style";
+import { useEffect, useState } from "react";
 
 const useStyles = makeStyles(shoppingCartStyles);
 
@@ -22,11 +24,22 @@ export default function ShoppingCart() {
 
   const list = useSelector<IProduct[]>(({ basket }) => basket.list);
 
-  //TODO اضافه کردن جمع حساب سبد خرید
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const calculationTotalPrice = () => {
+    if (list.length > 0) {
+      return list.reduce((total, { count, price }) => total + count * price, 0);
+    } else {
+      return 0;
+    }
+  };
+
+  useEffect(() => setTotalPrice(calculationTotalPrice()), [list]);
+
   return (
     <div>
       {list.length > 0 ? (
-        <List dense={true}>
+        <List dense={true} className={classes.listItem}>
           {list.map((item, index) => (
             <ListItem key={index}>
               <ListItemAvatar>
@@ -38,6 +51,7 @@ export default function ShoppingCart() {
               <NumberControl product={item} />
             </ListItem>
           ))}
+          <Chip label={`جمع کل: ${totalPrice.toLocaleString()} تومان`} />
         </List>
       ) : (
         <Box className={classes.root}>

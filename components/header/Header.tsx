@@ -25,12 +25,8 @@ export default function Header() {
   const [count, setCount] = useState<number>(0);
 
   const generateCountBasket = () => {
-    if (basket.length > 1) {
-      return basket.reduce(
-        (total, currentValue) => total.count + currentValue.count
-      );
-    } else if (basket.length > 0) {
-      return basket[0].count || 0;
+    if (basket.length > 0) {
+      return basket.reduce((total, { count }) => total + count, 0);
     } else {
       return 0;
     }
