@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { basket } from "./reducer";
+import basket from "./basket";
 
 export default combineReducers({
   basket,

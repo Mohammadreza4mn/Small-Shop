@@ -1,13 +1,13 @@
-import * as actionTypes from "./action";
+import * as actionTypes from "../action";
 import { HYDRATE } from "next-redux-wrapper";
 import { AnyAction } from "redux";
-import { IinistialState } from "../utils/interface";
+import { IinistialState } from "../../utils/interface";
 
 const inistialState: IinistialState = {
-  basket: [],
+  list: [],
 };
 
-export const basket = (state = inistialState, action: AnyAction) => {
+const basket = (state = inistialState, action: AnyAction) => {
   switch (action.type) {
     case HYDRATE: {
       return { ...state, ...action.payload };
@@ -15,10 +15,10 @@ export const basket = (state = inistialState, action: AnyAction) => {
     case actionTypes.addProductStore:
       return {
         ...state,
-        basket: [...state.basket, action.payload],
+        list: [...state.list, action.payload],
       };
     case actionTypes.updateBasketStore: {
-      let flag = [...state.basket];
+      let flag = [...state.list];
 
       flag.splice(
         flag.findIndex((item) => item.id == action.payload.id),
@@ -28,25 +28,26 @@ export const basket = (state = inistialState, action: AnyAction) => {
 
       return {
         ...state,
-        basket: flag,
+        list: flag,
       };
     }
     case actionTypes.removeProductBasketStore: {
-      let flag = [...state.basket];
+      let flag = [...state.list];
 
       return {
         ...state,
-        basket: flag.filter(({ id }) => id !== action.payload),
+        list: flag.filter(({ id }) => id !== action.payload),
       };
     }
     case actionTypes.setListBasket:
       return {
         ...state,
-        basket: action.payload,
+        list: action.payload,
       };
     default:
       return state;
   }
 };
+export default basket;
 
 // const getBasket = (state:ReduxState) =>state.

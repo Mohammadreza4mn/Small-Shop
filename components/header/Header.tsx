@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import { IinistialState } from "../../utils/interface";
 
 export default function Header() {
-  const { basket } = useSelector<IinistialState, IinistialState>(
-    (state) => state
+  const basket = useSelector<IinistialState, IinistialState>(
+    ({basket}) => basket.list
   );
 
   const [count, setCount] = useState<number>(0);

@@ -20,7 +20,7 @@ const Product = ({ product }: { product: IProduct }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const { basket }: { basket: IProduct[] } = useSelector((state) => state);
+  const basket = useSelector(({ basket }) => basket.list);
 
   return (
     <Card className={classes.root}>

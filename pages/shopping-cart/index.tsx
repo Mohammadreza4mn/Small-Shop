@@ -20,13 +20,14 @@ import NumberControl from "../../components/numberControl/NumberControl";
 export default function ShoppingCart() {
   const dispatch = useDispatch();
 
-  const { basket } = useSelector<IProduct[]>((state) => state);
+  const list = useSelector<IProduct[]>(({ basket }) => basket.list);
 
+  //TODO اضافه کردن جمع حساب سبد خرید
   return (
     <div>
-      {basket.length > 0 ? (
+      {list.length > 0 ? (
         <List dense={true}>
-          {basket.map((item, index) => (
+          {list.map((item, index) => (
             <ListItem key={index}>
               <ListItemAvatar>
                 <Avatar>

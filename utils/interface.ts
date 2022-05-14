@@ -8,5 +8,5 @@ export interface IProduct {
 }
 
 export interface IinistialState {
-  basket: IProduct[];
+  list: IProduct[];
 }

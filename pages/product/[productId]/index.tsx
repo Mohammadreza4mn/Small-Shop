@@ -26,10 +26,9 @@ export default function Product({ productInfo, test }) {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const { basket }: { basket: IProduct[] } = useSelector((state) => state);
+  const basket = useSelector(({basket}) => basket.list);
   console.log(1, test);
 
-  
   return (
     <Card className={classes.root}>
       <CardMedia
