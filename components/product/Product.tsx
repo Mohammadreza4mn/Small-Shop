@@ -13,6 +13,7 @@ import {
 import NumberControl from "../numberControl/NumberControl";
 import { productStyles } from "../../assets/jss/style";
 import { IProduct } from "../../utils/interface";
+import Link from "next/link";
 
 const useStyles = makeStyles(productStyles);
 
@@ -24,11 +25,13 @@ const Product = ({ product }: { product: IProduct }) => {
 
   return (
     <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image={product.img}
-        title={product.name}
-      />
+      <Link href={`product/${product.id}`}>
+        <CardMedia
+          className={classes.media}
+          image={product.img}
+          title={product.name}
+        />
+      </Link>
       <Divider />
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
@@ -42,6 +45,7 @@ const Product = ({ product }: { product: IProduct }) => {
         >
           {product.description}
         </Typography>
+        <Link href={`product/${product.id}`}>اطلاعات بیشتر</Link>
         <Divider />
         <Typography
           className={classes.price}

@@ -1,24 +1,28 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   List,
   ListItem,
   ListItemAvatar,
   Avatar,
   ListItemText,
-  ListItemSecondaryAction,
-  IconButton,
+  Button,
+  Box,
+  makeStyles
 } from "@material-ui/core";
 import { IProduct } from "../../utils/interface";
-
 import * as actionTypes from "../../redux/action";
-import Link from "next/link";
 import { wrapper } from "../../redux/store";
 import { GetServerSideProps } from "next";
 import { END } from "redux-saga";
 import NumberControl from "../../components/numberControl/NumberControl";
+import { useRouter } from "next/router";
+import { shoppingCartStyles } from "../../assets/jss/style";
+
+const useStyles = makeStyles(shoppingCartStyles);
 
 export default function ShoppingCart() {
-  const dispatch = useDispatch();
+  const Router = useRouter();
+  const classes = useStyles();
 
   const list = useSelector<IProduct[]>(({ basket }) => basket.list);
 
@@ -40,7 +44,17 @@ export default function ShoppingCart() {
           ))}
         </List>
       ) : (
-        <Link href="/">go back</Link>
+        <Box className={classes.root}>
+          <h4>سبد خرید خالی است</h4>
+          <Button
+            size="small"
+            color="primary"
+            variant="contained"
+            onClick={() => Router.back()}
+          >
+            بازگشت به صفحه قبل
+          </Button>
+        </Box>
       )}
     </div>
   );

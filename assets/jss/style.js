@@ -25,3 +25,18 @@ export const productListStyles = (theme) => ({
     gap: 10,
   },
 });
+
+export const headerStyles = (theme) => ({
+  root: {
+    justifyContent: "space-between",
+  },
+});
+
+export const shoppingCartStyles = (theme) => ({
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginTop: "50%",
+  },
+});

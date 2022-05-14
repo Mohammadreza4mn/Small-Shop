@@ -10,9 +10,7 @@ import {
   Divider,
 } from "@material-ui/core";
 import { IProduct } from "../../../utils/interface";
-
 import * as actionTypes from "../../../redux/action";
-import Link from "next/link";
 import { wrapper } from "../../../redux/store";
 import { GetServerSideProps } from "next";
 import { END } from "redux-saga";
@@ -26,8 +24,7 @@ export default function Product({ productInfo, test }) {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const basket = useSelector(({basket}) => basket.list);
-  console.log(1, test);
+  const basket = useSelector(({ basket }) => basket.list);
 
   return (
     <Card className={classes.root}>
@@ -41,12 +38,7 @@ export default function Product({ productInfo, test }) {
         <Typography gutterBottom variant="h5" component="h2">
           {productInfo.name}
         </Typography>
-        <Typography
-          className={classes.description}
-          variant="body2"
-          color="textSecondary"
-          component="p"
-        >
+        <Typography variant="body2" color="textSecondary" component="p">
           {productInfo.description}
         </Typography>
         <Divider />
