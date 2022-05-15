@@ -52,5 +52,3 @@ const basket = (state = inistialState, action: AnyAction) => {
   }
 };
 export default basket;
-
-// const getBasket = (state:ReduxState) =>state.

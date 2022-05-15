@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import {
   Button,
   Card,
@@ -15,13 +14,13 @@ import { GetServerSideProps } from "next";
 import NumberControl from "../../../components/numberControl/NumberControl";
 import { productInfoAPI } from "../../../libs/api";
 import { productStyles } from "../../../assets/jss/style";
-import { useAppSelector } from "../../../redux/hooks";
+import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
 import { selectBasket } from "../../../redux/selectors";
 
 const useStyles = makeStyles(productStyles);
 
 export default function Product({ productInfo }) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const classes = useStyles();
 
   const { list } = useAppSelector(selectBasket);

@@ -1,12 +1,12 @@
 import { IconButton, Box } from "@material-ui/core";
-import { useDispatch } from "react-redux";
 import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { updateBasket, removeItemBasket } from "../../redux/action";
+import { useAppDispatch } from "../../redux/hooks";
 
 export default function NumberControl({ product }) {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <Box>
