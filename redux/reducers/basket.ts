@@ -10,7 +10,10 @@ const inistialState: IinistialStateBasket = {
 const basket = (state = inistialState, action: AnyAction) => {
   switch (action.type) {
     case HYDRATE: {
-      return { ...state, ...action.payload };
+      return {
+        ...state,
+        ...action.payload.basket,
+      };
     }
     case Basket.addProductStore:
       return {

@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addProduct } from "../../redux/action";
 import {
   Button,
@@ -14,6 +14,8 @@ import NumberControl from "../numberControl/NumberControl";
 import { productStyles } from "../../assets/jss/style";
 import { IProduct } from "../../utils/interface";
 import Link from "next/link";
+import { useAppSelector } from "../../redux/hooks";
+import { selectBasket } from "../../redux/selectors";
 
 const useStyles = makeStyles(productStyles);
 
@@ -21,7 +23,7 @@ const Product = ({ product }: { product: IProduct }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
-  const basket = useSelector(({ basket }) => basket.list);
+  const { list } = useAppSelector(selectBasket);
 
   return (
     <Card className={classes.root}>
@@ -58,8 +60,8 @@ const Product = ({ product }: { product: IProduct }) => {
         <Divider />
       </CardContent>
       <CardActions>
-        {basket.some(({ id }) => id == product.id) ? (
-          <NumberControl product={basket.find(({ id }) => id == product.id)} />
+        {list.some(({ id }) => id == product.id) ? (
+          <NumberControl product={list.find(({ id }) => id == product.id)} />
         ) : (
           <Button
             size="small"

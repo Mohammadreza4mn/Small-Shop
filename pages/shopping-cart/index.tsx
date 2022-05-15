@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import {
   List,
   ListItem,
@@ -10,11 +9,12 @@ import {
   makeStyles,
   Chip,
 } from "@material-ui/core";
-import { IProduct } from "../../utils/interface";
 import NumberControl from "../../components/numberControl/NumberControl";
 import { useRouter } from "next/router";
 import { shoppingCartStyles } from "../../assets/jss/style";
 import { useEffect, useState } from "react";
+import { useAppSelector } from "../../redux/hooks";
+import { selectBasket } from "../../redux/selectors";
 
 const useStyles = makeStyles(shoppingCartStyles);
 
@@ -22,7 +22,7 @@ export default function ShoppingCart() {
   const Router = useRouter();
   const classes = useStyles();
 
-  const list = useSelector<IProduct[]>(({ basket }) => basket.list);
+  const { list } = useAppSelector(selectBasket);
 
   const [totalPrice, setTotalPrice] = useState(0);
 

@@ -1,8 +1,10 @@
 import React from "react";
 import { Snackbar, Slide } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toastDown } from "../../redux/action";
+import { useAppSelector } from "../../redux/hooks";
+import { selectToast } from "../../redux/selectors";
 
 const snackbarTransition = (props) => {
   return <Slide {...props} direction="down" />;
@@ -10,7 +12,7 @@ const snackbarTransition = (props) => {
 
 function Toast() {
   const dispatch = useDispatch();
-  const { severity, toggle, message } = useSelector(({ toast }) => toast);
+  const { severity, toggle, message } = useAppSelector(selectToast);
 
   return (
     <Snackbar

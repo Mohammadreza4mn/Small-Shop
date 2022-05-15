@@ -37,7 +37,7 @@ export const shoppingCartStyles = (theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    marginTop: "50%",
+    marginTop: "50vh",
   },
   listItem: {
     display: "flex",
