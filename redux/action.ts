@@ -1,3 +1,5 @@
+import { IActionBasket } from "../utils/interface";
+
 // basket
 export enum Basket {
   addProductServer = "addProductServer",
@@ -9,7 +11,10 @@ export enum Basket {
   removeItemBasketStore = "removeItemBasketStore",
   removeItemBasketServer = "removeItemBasketServer",
 }
-export const addProduct = (payload, side) => {
+export const addProduct = ({
+  payload,
+  side,
+}: IActionBasket["parameter"]): IActionBasket["return"] => {
   if (side == "client") {
     return {
       type: Basket.addProductStore,

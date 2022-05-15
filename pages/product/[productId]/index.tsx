@@ -16,10 +16,11 @@ import { productInfoAPI } from "../../../libs/api";
 import { productStyles } from "../../../assets/jss/style";
 import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
 import { selectBasket } from "../../../redux/selectors";
+import { IProduct } from "../../../utils/interface";
 
 const useStyles = makeStyles(productStyles);
 
-export default function Product({ productInfo }) {
+export default function Product({ productInfo }: { productInfo: IProduct }) {
   const dispatch = useAppDispatch();
   const classes = useStyles();
 

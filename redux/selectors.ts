@@ -1,4 +1,7 @@
 import { RootState } from "./store";
+import { IinistialStateBasket, IinistialStateToast } from "../utils/interface";
 
-export const selectBasket = (state: RootState) => state.basket;
-export const selectToast = (state: RootState) => state.toast;
+export const selectBasket = (state: RootState): IinistialStateBasket =>
+  state.basket;
+export const selectToast = (state: RootState): IinistialStateToast =>
+  state.toast;

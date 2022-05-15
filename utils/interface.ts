@@ -16,3 +16,14 @@ export interface IinistialStateToast {
   toggle: boolean;
   message: string;
 }
+
+export interface IActionBasket {
+  parameter: {
+    payload: IProduct;
+    side?: string;
+  };
+  return: {
+    type: string;
+    payload: IProduct;
+  };
+}
