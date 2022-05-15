@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps =
 
     return {
       props: {
-        products: list as IProduct[],
+        products: list,
       },
     };
   });
