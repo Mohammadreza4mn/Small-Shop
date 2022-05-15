@@ -1,5 +1,4 @@
 import { Basket } from "../action";
-import { HYDRATE } from "next-redux-wrapper";
 import { AnyAction } from "redux";
 import { IinistialStateBasket } from "../../utils/interface";
 
@@ -9,12 +8,6 @@ const inistialState: IinistialStateBasket = {
 
 const basket = (state = inistialState, action: AnyAction) => {
   switch (action.type) {
-    case HYDRATE: {
-      return {
-        ...state,
-        ...action.payload.basket,
-      };
-    }
     case Basket.addProductStore:
       return {
         ...state,
