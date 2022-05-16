@@ -5,9 +5,9 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import { updateBasket, removeItemBasket } from "../../redux/action";
 import { useAppDispatch } from "../../redux/hooks";
 import { FC } from "react";
-import { IProduct } from "../../utils/interface";
+import { IProductBasket } from "../../utils/interface";
 
-const NumberControl: FC<{ product: IProduct }> = ({ product }) => {
+const NumberControl: FC<{ product: IProductBasket }> = ({ product }) => {
   const dispatch = useAppDispatch();
 
   return (

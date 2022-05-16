@@ -24,12 +24,20 @@
   ],
   "shoppingCart": [
     {
+      "id": 2,
+      "name": "لوستر 12 شعله چشمه نور کد C2735.6+6-BO",
+      "price": 4275600,
+      "img": "https://dkstatics-public.digikala.com/digikala-products/114211379.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
+      "description": "برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد",
+      "count": 2
+    },
+    {
       "id": 3,
       "name": "هودی مردانه کد HG6707",
       "price": 445000,
       "img": "https://dkstatics-public.digikala.com/digikala-products/117563628.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80",
       "description": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است",
-      "count": 12
+      "count": 1
     }
   ]
 }

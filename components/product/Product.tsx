@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import NumberControl from "../numberControl/NumberControl";
 import { productStyles } from "../../assets/jss/style";
-import { IProduct } from "../../utils/interface";
+import { IProduct, IProductBasket } from "../../utils/interface";
 import Link from "next/link";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { selectBasket } from "../../redux/selectors";
@@ -24,6 +24,25 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
   const classes = useStyles();
 
   const { list } = useAppSelector(selectBasket);
+
+  const generateCardActions = (list: IProductBasket[]) => {
+    let index = list.findIndex(({ id }) => id == product.id);
+
+    if (index == -1) {
+      return (
+        <Button
+          size="small"
+          color="primary"
+          variant="contained"
+          onClick={() => dispatch(addProduct({ ...product, count: 1 }))}
+        >
+          افزودن به سبد خرید
+        </Button>
+      );
+    } else {
+      return <NumberControl product={list[index]} />;
+    }
+  };
 
   return (
     <Card className={classes.root}>
@@ -59,20 +78,7 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
         </Typography>
         <Divider />
       </CardContent>
-      <CardActions>
-        {list.some(({ id }) => id == product.id) ? (
-          <NumberControl product={list.find(({ id }) => id == product.id)} />
-        ) : (
-          <Button
-            size="small"
-            color="primary"
-            variant="contained"
-            onClick={() => dispatch(addProduct({ ...product, count: 1 }))}
-          >
-            افزودن به سبد خرید
-          </Button>
-        )}
-      </CardActions>
+      <CardActions>{generateCardActions(list)}</CardActions>
     </Card>
   );
 };

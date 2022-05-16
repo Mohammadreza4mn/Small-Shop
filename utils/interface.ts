@@ -6,11 +6,13 @@ export interface IProduct {
   name: string;
   price: number;
   img: string;
-  count?: number;
   description: string;
 }
+export interface IProductBasket extends IProduct {
+  count: number;
+}
 export interface IInistialStateBasket {
-  list: IProduct[];
+  list: IProductBasket[];
 }
 export interface IInistialStateToast {
   severity?: Color;
@@ -20,7 +22,10 @@ export interface IInistialStateToast {
 
 // interface action redux
 export interface IActionBasket {
-  (payload: IProduct, side?: string): { type: string; payload?: IProduct };
+  (payload: IProductBasket, side?: string): {
+    type: string;
+    payload?: IProduct;
+  };
 }
 export interface IActionBasketUpdate {
   (payload: { id: number; data: { count: number } }, side?: string): {
