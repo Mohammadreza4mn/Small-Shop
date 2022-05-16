@@ -1,8 +1,8 @@
 import { Basket } from "../action";
 import { AnyAction } from "redux";
-import { IinistialStateBasket } from "../../utils/interface";
+import { IInistialStateBasket } from "../../utils/interface";
 
-const inistialState: IinistialStateBasket = {
+const inistialState: IInistialStateBasket = {
   list: [],
 };
 

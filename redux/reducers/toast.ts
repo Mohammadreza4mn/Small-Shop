@@ -1,8 +1,8 @@
 import { Toast } from "../action";
 import { AnyAction } from "redux";
-import { IinistialStateToast } from "../../utils/interface";
+import { IInistialStateToast } from "../../utils/interface";
 
-const inistialState: IinistialStateToast = {
+const inistialState: IInistialStateToast = {
   severity: "",
   toggle: false,
   message: "",

@@ -1,4 +1,4 @@
-import { IActionBasket } from "../utils/interface";
+import { IActionBasket, IActionToast } from "../utils/interface";
 
 // basket
 export enum Basket {
@@ -11,10 +11,7 @@ export enum Basket {
   removeItemBasketStore = "removeItemBasketStore",
   removeItemBasketServer = "removeItemBasketServer",
 }
-export const addProduct = ({
-  payload,
-  side,
-}: IActionBasket["parameter"]): IActionBasket["return"] => {
+export const addProduct: IActionBasket = (payload, side) => {
   if (side == "client") {
     return {
       type: Basket.addProductStore,
@@ -27,7 +24,7 @@ export const addProduct = ({
     };
   }
 };
-export const getListBasket = (payload, side) => {
+export const getListBasket: IActionBasket = (payload, side) => {
   if (side == "client") {
     return {
       type: Basket.setListBasketStore,
@@ -39,7 +36,7 @@ export const getListBasket = (payload, side) => {
     };
   }
 };
-export const updateBasket = (payload, side) => {
+export const updateBasket: IActionBasket = (payload, side) => {
   if (side == "client") {
     return {
       type: Basket.updateBasketStore,
@@ -52,7 +49,7 @@ export const updateBasket = (payload, side) => {
     };
   }
 };
-export const removeItemBasket = (payload, side) => {
+export const removeItemBasket: IActionBasket = (payload, side) => {
   if (side == "client") {
     return {
       type: Basket.removeItemBasketStore,
@@ -70,19 +67,19 @@ export const removeItemBasket = (payload, side) => {
 export enum Toast {
   toggle = "toggle",
 }
-export const toastError = (message) => {
+export const toastError: IActionToast = (message) => {
   return {
     type: Toast.toggle,
     payload: { severity: "error", toggle: true, message: message },
   };
 };
-export const toastSuccess = (message) => {
+export const toastSuccess: IActionToast = (message) => {
   return {
     type: Toast.toggle,
     payload: { severity: "success", toggle: true, message: message },
   };
 };
-export const toastDown = () => {
+export const toastDown: IActionToast = () => {
   return {
     type: Toast.toggle,
     payload: { severity: "", toggle: false, message: "" },

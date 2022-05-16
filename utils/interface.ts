@@ -1,3 +1,4 @@
+// interface store
 export interface IProduct {
   id: number;
   name: string;
@@ -6,24 +7,19 @@ export interface IProduct {
   count?: number;
   description: string;
 }
-
-export interface IinistialStateBasket {
+export interface IInistialStateBasket {
   list: IProduct[];
 }
-
-export interface IinistialStateToast {
+export interface IInistialStateToast {
   severity: string;
   toggle: boolean;
-  message: string;
+  message?: string;
 }
 
+// interface action redux
 export interface IActionBasket {
-  parameter: {
-    payload: IProduct;
-    side?: string;
-  };
-  return: {
-    type: string;
-    payload: IProduct;
-  };
+  (payload: IProduct, side?: string): { type: string; payload?: IProduct };
+}
+export interface IActionToast {
+  (message?: string): { type: string; payload: IInistialStateToast };
 }
