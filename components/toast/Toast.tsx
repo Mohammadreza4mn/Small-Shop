@@ -1,15 +1,15 @@
 import React from "react";
-import { Snackbar, Slide } from "@material-ui/core";
+import { Snackbar, Slide, SlideProps } from "@material-ui/core";
 import Alert from "@material-ui/lab/Alert";
 import { toastDown } from "../../redux/action";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { selectToast } from "../../redux/selectors";
 
-const snackbarTransition = (props) => {
+const snackbarTransition = (props: JSX.IntrinsicAttributes & SlideProps) => {
   return <Slide {...props} direction="down" />;
 };
 
-function Toast() {
+const Toast = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const { severity, toggle, message } = useAppSelector(selectToast);
 
@@ -31,5 +31,6 @@ function Toast() {
       </Alert>
     </Snackbar>
   );
-}
+};
+
 export default Toast;

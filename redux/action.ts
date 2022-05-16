@@ -1,4 +1,9 @@
-import { IActionBasket, IActionToast } from "../utils/interface";
+import {
+  IActionBasket,
+  IActionToast,
+  IActionBasketUpdate,
+  IActionBasketRemove,
+} from "../utils/interface";
 
 // basket
 export enum Basket {
@@ -36,7 +41,7 @@ export const getListBasket: IActionBasket = (payload, side) => {
     };
   }
 };
-export const updateBasket: IActionBasket = (payload, side) => {
+export const updateBasket: IActionBasketUpdate = (payload, side) => {
   if (side == "client") {
     return {
       type: Basket.updateBasketStore,
@@ -49,7 +54,7 @@ export const updateBasket: IActionBasket = (payload, side) => {
     };
   }
 };
-export const removeItemBasket: IActionBasket = (payload, side) => {
+export const removeItemBasket: IActionBasketRemove = (payload, side) => {
   if (side == "client") {
     return {
       type: Basket.removeItemBasketStore,
@@ -82,6 +87,6 @@ export const toastSuccess: IActionToast = (message) => {
 export const toastDown: IActionToast = () => {
   return {
     type: Toast.toggle,
-    payload: { severity: "", toggle: false, message: "" },
+    payload: { severity: undefined, toggle: false, message: undefined },
   };
 };

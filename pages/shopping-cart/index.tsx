@@ -24,17 +24,19 @@ export default function ShoppingCart() {
 
   const { list } = useAppSelector(selectBasket);
 
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalPrice, setTotalPrice] = useState<number>(0);
 
-  const calculationTotalPrice = () => {
+  const calculationTotalPrice = (): void => {
     if (list.length > 0) {
-      return list.reduce((total, { count, price }) => total + count * price, 0);
+      setTotalPrice(
+        list.reduce((total, { count = 1, price }) => total + count * price, 0)
+      );
     } else {
-      return 0;
+      setTotalPrice(0);
     }
   };
 
-  useEffect(() => setTotalPrice(calculationTotalPrice()), [list]);
+  useEffect(() => calculationTotalPrice(), [list]);
 
   return (
     <div>

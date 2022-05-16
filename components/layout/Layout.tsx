@@ -3,8 +3,9 @@ import { PropsWithChildren } from "react";
 import { Box } from "@material-ui/core";
 import Toast from "../toast/Toast";
 import Head from "next/head";
+import { FC } from "react";
 
-export default function Layout({ children }: PropsWithChildren<any>) {
+const Layout: FC<{ children: PropsWithChildren<any> }> = ({ children }) => {
   return (
     <>
       <Head>
@@ -17,4 +18,6 @@ export default function Layout({ children }: PropsWithChildren<any>) {
       </Box>
     </>
   );
-}
+};
+
+export default Layout;

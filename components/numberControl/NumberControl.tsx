@@ -4,8 +4,10 @@ import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import DeleteIcon from "@material-ui/icons/Delete";
 import { updateBasket, removeItemBasket } from "../../redux/action";
 import { useAppDispatch } from "../../redux/hooks";
+import { FC } from "react";
+import { IProduct } from "../../utils/interface";
 
-export default function NumberControl({ product }) {
+const NumberControl: FC<{ product: IProduct }> = ({ product }) => {
   const dispatch = useAppDispatch();
 
   return (
@@ -36,4 +38,6 @@ export default function NumberControl({ product }) {
       </IconButton>
     </Box>
   );
-}
+};
+
+export default NumberControl;

@@ -12,10 +12,11 @@ import { useEffect, useState } from "react";
 import { headerStyles } from "../../assets/jss/style";
 import { useAppSelector } from "../../redux/hooks";
 import { selectBasket } from "../../redux/selectors";
+import { FC } from "react";
 
 const useStyles = makeStyles(headerStyles);
 
-export default function Header() {
+const Header: FC = () => {
   const classes = useStyles();
 
   const { list } = useAppSelector(selectBasket);
@@ -50,4 +51,6 @@ export default function Header() {
       </Toolbar>
     </AppBar>
   );
-}
+};
+
+export default Header;

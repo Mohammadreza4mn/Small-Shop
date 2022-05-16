@@ -15,10 +15,11 @@ import { IProduct } from "../../utils/interface";
 import Link from "next/link";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { selectBasket } from "../../redux/selectors";
+import { FC } from "react";
 
 const useStyles = makeStyles(productStyles);
 
-const Product = ({ product }: { product: IProduct }) => {
+const Product: FC<{ product: IProduct }> = ({ product }) => {
   const dispatch = useAppDispatch();
   const classes = useStyles();
 
