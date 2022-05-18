@@ -3,7 +3,7 @@ import { AnyAction } from "redux";
 import { IInistialStateToast } from "../../utils/interface";
 
 const inistialState: IInistialStateToast = {
-  severity: "",
+  severity: "info",
   toggle: false,
   message: "",
 };

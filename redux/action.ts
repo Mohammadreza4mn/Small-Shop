@@ -1,77 +1,60 @@
 import {
-  IActionBasket,
+  IActionGetListBasket,
   IActionToast,
   IActionBasketUpdate,
   IActionBasketRemove,
+  IActionAddBasket,
+  IActionAddBasketSuccess,
+  IActionGetListBasketSuccess,
+  IActionBasketUpdateSuccess,
+  IActionBasketRemoveSuccess,
+  IActionToastDown,
 } from "../utils/interface";
 
 // basket
 export enum Basket {
-  addProductServer = "addProductServer",
-  addProductStore = "addProductStore",
-  getListBasketServer = "getListBasketServer",
-  setListBasketStore = "setListBasketStore",
-  updateBasketServer = "updateBasketServer",
-  updateBasketStore = "updateBasketStore",
-  removeItemBasketStore = "removeItemBasketStore",
-  removeItemBasketServer = "removeItemBasketServer",
+  addBasket = "addBasket",
+  addBasketSuccess = "addBasketSuccess",
+  getListBasket = "getListBasket",
+  getListBasketSuccess = "getListBasketSuccess",
+  updateBasket = "updateBasket",
+  updateBasketSuccess = "updateBasketSuccess",
+  removeItemBasket = "removeItemBasket",
+  removeItemBasketSuccess = "removeItemBasketSuccess",
 }
-export const addProduct: IActionBasket = (payload, side) => {
-  if (side == "client") {
-    return {
-      type: Basket.addProductStore,
-      payload,
-    };
-  } else {
-    return {
-      type: Basket.addProductServer,
-      payload,
-    };
-  }
+
+export const addBasket: IActionAddBasket = (payload) => {
+  return { type: Basket.addBasket, payload };
 };
-export const getListBasket: IActionBasket = (payload, side) => {
-  if (side == "client") {
-    return {
-      type: Basket.setListBasketStore,
-      payload,
-    };
-  } else {
-    return {
-      type: Basket.getListBasketServer,
-    };
-  }
+export const addBasketSuccess: IActionAddBasketSuccess = (payload) => {
+  return { type: Basket.addBasketSuccess, payload };
 };
-export const updateBasket: IActionBasketUpdate = (payload, side) => {
-  if (side == "client") {
-    return {
-      type: Basket.updateBasketStore,
-      payload,
-    };
-  } else {
-    return {
-      type: Basket.updateBasketServer,
-      payload,
-    };
-  }
+export const getListBasket: IActionGetListBasket = () => {
+  return { type: Basket.getListBasket };
 };
-export const removeItemBasket: IActionBasketRemove = (payload, side) => {
-  if (side == "client") {
-    return {
-      type: Basket.removeItemBasketStore,
-      payload,
-    };
-  } else {
-    return {
-      type: Basket.removeItemBasketServer,
-      payload,
-    };
-  }
+export const getListBasketSuccess: IActionGetListBasketSuccess = (payload) => {
+  return { type: Basket.getListBasketSuccess, payload };
+};
+export const updateBasket: IActionBasketUpdate = (payload) => {
+  return { type: Basket.updateBasket, payload };
+};
+export const updateBasketSuccess: IActionBasketUpdateSuccess = (payload) => {
+  return { type: Basket.updateBasketSuccess, payload };
+};
+export const removeItemBasket: IActionBasketRemove = (payload) => {
+  return { type: Basket.removeItemBasket, payload };
+};
+export const removeItemBasketSuccess: IActionBasketRemoveSuccess = (
+  payload
+) => {
+  return { type: Basket.removeItemBasketSuccess, payload };
 };
 
 // toast
 export enum Toast {
   toggle = "toggle",
 }
+
 export const toastError: IActionToast = (message) => {
   return {
     type: Toast.toggle,
@@ -84,9 +67,6 @@ export const toastSuccess: IActionToast = (message) => {
     payload: { severity: "success", toggle: true, message: message },
   };
 };
-export const toastDown: IActionToast = () => {
-  return {
-    type: Toast.toggle,
-    payload: { severity: undefined, toggle: false, message: undefined },
-  };
+export const toastDown: IActionToastDown = () => {
+  return { type: Toast.toggle, payload: { toggle: false } };
 };

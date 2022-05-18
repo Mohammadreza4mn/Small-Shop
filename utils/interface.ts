@@ -1,6 +1,7 @@
 import { Color } from "@material-ui/lab";
 
 // interface store
+type store = "basket";
 export interface IProduct {
   id: number;
   name: string;
@@ -21,24 +22,59 @@ export interface IInistialStateToast {
 }
 
 // interface action redux
-export interface IActionBasket {
-  (payload: IProductBasket, side?: string): {
+// basket
+export interface IActionAddBasket {
+  (payload: IProductBasket): {
     type: string;
-    payload?: IProduct;
+    payload: IProductBasket;
+  };
+}
+export interface IActionAddBasketSuccess {
+  (payload: IProductBasket): {
+    type: string;
+    payload: IProductBasket;
+  };
+}
+export interface IActionGetListBasket {
+  (): {
+    type: string;
+  };
+}
+export interface IActionGetListBasketSuccess {
+  (payload: IProductBasket): {
+    type: string;
+    payload: IProductBasket;
   };
 }
 export interface IActionBasketUpdate {
-  (payload: { id: number; data: { count: number } }, side?: string): {
+  (payload: { id: number; data: { count: number } }): {
     type: string;
-    payload?: IProduct;
+    payload: { id: number; data: { count: number } };
+  };
+}
+export interface IActionBasketUpdateSuccess {
+  (payload: IProductBasket): {
+    type: string;
+    payload: IProductBasket;
   };
 }
 export interface IActionBasketRemove {
-  (payload: { id: number; data: { count: number } }, side?: string): {
+  (payload: number): {
     type: string;
-    payload?: IProduct;
+    payload: number;
   };
 }
+export interface IActionBasketRemoveSuccess {
+  (payload: number): {
+    type: string;
+    payload: number;
+  };
+}
+
+// toast
 export interface IActionToast {
   (message?: string): { type: string; payload: IInistialStateToast };
+}
+export interface IActionToastDown {
+  (): { type: string; payload: IInistialStateToast };
 }

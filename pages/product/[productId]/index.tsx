@@ -8,7 +8,7 @@ import {
   makeStyles,
   Divider,
 } from "@material-ui/core";
-import { addProduct } from "../../../redux/action";
+import { addBasket } from "../../../redux/action";
 import { wrapper } from "../../../redux/store";
 import { GetServerSideProps } from "next";
 import NumberControl from "../../../components/numberControl/NumberControl";
@@ -62,7 +62,7 @@ export default function Product({ productInfo }: { productInfo: IProduct }) {
             size="small"
             color="primary"
             variant="contained"
-            onClick={() => dispatch(addProduct({ ...productInfo, count: 1 }))}
+            onClick={() => dispatch(addBasket({ ...productInfo, count: 1 }))}
           >
             افزودن به سبد خرید
           </Button>

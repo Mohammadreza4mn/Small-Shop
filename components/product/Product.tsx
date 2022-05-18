@@ -1,4 +1,4 @@
-import { addProduct } from "../../redux/action";
+import { addBasket } from "../../redux/action";
 import {
   Button,
   Card,
@@ -34,7 +34,7 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
           size="small"
           color="primary"
           variant="contained"
-          onClick={() => dispatch(addProduct({ ...product, count: 1 }))}
+          onClick={() => dispatch(addBasket({ ...product, count: 1 }))}
         >
           افزودن به سبد خرید
         </Button>

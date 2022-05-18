@@ -8,12 +8,12 @@ const inistialState: IInistialStateBasket = {
 
 const basket = (state = inistialState, action: AnyAction) => {
   switch (action.type) {
-    case Basket.addProductStore:
+    case Basket.addBasketSuccess:
       return {
         ...state,
         list: [...state.list, action.payload],
       };
-    case Basket.updateBasketStore: {
+    case Basket.updateBasketSuccess: {
       let flag = [...state.list];
 
       flag.splice(
@@ -27,7 +27,7 @@ const basket = (state = inistialState, action: AnyAction) => {
         list: flag,
       };
     }
-    case Basket.removeItemBasketStore: {
+    case Basket.removeItemBasketSuccess: {
       let flag = [...state.list];
 
       return {
@@ -35,7 +35,7 @@ const basket = (state = inistialState, action: AnyAction) => {
         list: flag.filter(({ id }) => id !== action.payload),
       };
     }
-    case Basket.setListBasketStore:
+    case Basket.getListBasketSuccess:
       return {
         ...state,
         list: action.payload,
