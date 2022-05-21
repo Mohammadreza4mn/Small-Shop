@@ -11,6 +11,7 @@ import { updateBasket, removeItemBasket } from "../../redux/action";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { FC } from "react";
 import { IProductBasket } from "../../utils/interface";
+import { ElementBasket } from "../../utils/enum";
 import { selectLoading } from "../../redux/selectors";
 import { numberControlStyles } from "../../assets/jss/style";
 
@@ -37,7 +38,7 @@ const NumberControl: FC<{ product: IProductBasket }> = ({ product }) => {
   };
 
   const generateProductCount = () => {
-    if (basket.includes(`span__product-count--${product.id}`)) {
+    if (basket.includes(ElementBasket.span_product_count + product.id)) {
       return <CircularProgress size={20} />;
     } else {
       return product.count;

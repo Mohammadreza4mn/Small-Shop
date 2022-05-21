@@ -13,6 +13,7 @@ import {
 import NumberControl from "../numberControl/NumberControl";
 import { productStyles } from "../../assets/jss/style";
 import { IProduct } from "../../utils/interface";
+import { ElementBasket, ElementProduct } from "../../utils/enum";
 import Link from "next/link";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { selectBasket, selectLoading } from "../../redux/selectors";
@@ -25,12 +26,12 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
   const classes = useStyles();
 
   const { list } = useAppSelector(selectBasket);
-  const { basket } = useAppSelector(selectLoading);
+  const { product: productLoading, basket } = useAppSelector(selectLoading);
 
   const generateCardActions = () => {
     let index = list.findIndex(({ id }) => id == product.id);
 
-    if (basket.includes(`btn__add-basket--${product.id}`)) {
+    if (basket.includes(ElementBasket.btn_add_basket + product.id)) {
       return <CircularProgress />;
     } else {
       if (index == -1) {
@@ -51,7 +52,7 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
   };
 
   const generateClassCard = () => {
-    if (basket.includes(`card__product--${product.id}`)) {
+    if (productLoading.includes(ElementProduct.card_product + product.id)) {
       return classes.cardLoading;
     } else {
       return classes.root;

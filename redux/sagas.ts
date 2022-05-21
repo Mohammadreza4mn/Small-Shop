@@ -19,13 +19,14 @@ import {
   updateBasket,
   removeItemBasket,
 } from "./action";
+import { ElementBasket, ElementProduct } from "../utils/enum";
 
 function* handleAddBasket(action: ReturnType<typeof addBasket>) {
   try {
     yield put(
       loadingStart({
         store: "basket",
-        element: `btn__add-basket--${action.payload.id}`,
+        element: ElementBasket.btn_add_basket + action.payload.id,
       })
     );
 
@@ -39,7 +40,7 @@ function* handleAddBasket(action: ReturnType<typeof addBasket>) {
     yield put(
       loadingEnd({
         store: "basket",
-        element: `btn__add-basket--${action.payload.id}`,
+        element: ElementBasket.btn_add_basket + action.payload.id,
       })
     );
   }
@@ -72,7 +73,7 @@ function* handleChangeCountProduct(action: ReturnType<typeof updateBasket>) {
     yield put(
       loadingStart({
         store: "basket",
-        element: `span__product-count--${action.payload.id}`,
+        element: ElementBasket.span_product_count + action.payload.id,
       })
     );
 
@@ -89,7 +90,7 @@ function* handleChangeCountProduct(action: ReturnType<typeof updateBasket>) {
     yield put(
       loadingEnd({
         store: "basket",
-        element: `span__product-count--${action.payload.id}`,
+        element: ElementBasket.span_product_count + action.payload.id,
       })
     );
   }
@@ -98,8 +99,8 @@ function* handleRemoveProduct(action: ReturnType<typeof removeItemBasket>) {
   try {
     yield put(
       loadingStart({
-        store: "basket",
-        element: `card__product--${action.payload}`,
+        store: "product",
+        element: ElementProduct.card_product + action.payload,
       })
     );
 
@@ -111,8 +112,8 @@ function* handleRemoveProduct(action: ReturnType<typeof removeItemBasket>) {
   } finally {
     yield put(
       loadingEnd({
-        store: "basket",
-        element: `card__product--${action.payload}`,
+        store: "product",
+        element: ElementProduct.card_product + action.payload,
       })
     );
   }
