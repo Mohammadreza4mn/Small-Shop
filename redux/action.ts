@@ -9,6 +9,7 @@ import {
   IActionBasketUpdateSuccess,
   IActionBasketRemoveSuccess,
   IActionToastDown,
+  IActionLoading,
 } from "../utils/interface";
 
 // basket
@@ -69,4 +70,16 @@ export const toastSuccess: IActionToast = (message) => {
 };
 export const toastDown: IActionToastDown = () => {
   return { type: Toast.toggle, payload: { toggle: false } };
+};
+
+// loading
+export enum Loading {
+  start = "start",
+  end = "end",
+}
+export const loadingStart: IActionLoading = (payload) => {
+  return { type: Loading.start, payload };
+};
+export const loadingEnd: IActionLoading = (payload) => {
+  return { type: Loading.end, payload };
 };

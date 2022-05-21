@@ -7,18 +7,21 @@ const inistialState: IInistialStateLoading = {
 };
 
 const loading = (state = inistialState, action: AnyAction) => {
-  const { store, element } = action.payload;
-
   switch (action.type) {
     case Loading.start:
       return {
         ...state,
-        [store]: [...state[store], element],
+        [action.payload.store]: [
+          ...state[action.payload.store],
+          action.payload.element,
+        ],
       };
     case Loading.end:
       return {
         ...state,
-        [store]: state[store].filter((item) => item !== element),
+        [action.payload.store]: state[action.payload.store].filter(
+          (item) => item !== action.payload.element
+        ),
       };
     default:
       return state;

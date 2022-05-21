@@ -1,7 +1,7 @@
 import { Color } from "@material-ui/lab";
 
 // interface store
-type store = "basket";
+type listStoreForLoading = "basket";
 export interface IProduct {
   id: number;
   name: string;
@@ -19,6 +19,9 @@ export interface IInistialStateToast {
   severity?: Color;
   toggle: boolean;
   message?: string;
+}
+export interface IInistialStateLoading {
+  basket: string[];
 }
 
 // interface action redux
@@ -77,4 +80,12 @@ export interface IActionToast {
 }
 export interface IActionToastDown {
   (): { type: string; payload: IInistialStateToast };
+}
+
+// loading
+export interface IActionLoading {
+  (payload: { store: listStoreForLoading; element: string }): {
+    type: string;
+    payload: { store: listStoreForLoading; element: string };
+  };
 }
