@@ -4,8 +4,9 @@ import { IInistialStateLoading } from "../../utils/interface";
 
 const inistialState: IInistialStateLoading = {
   basket: [],
+  product: [],
 };
-
+// TODO دادن تایپ صحیح به اکشن
 const loading = (state = inistialState, action: AnyAction) => {
   switch (action.type) {
     case Loading.start:
