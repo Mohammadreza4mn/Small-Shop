@@ -18,7 +18,7 @@ const Toast = (): JSX.Element => {
       dir="ltr"
       open={toggle}
       anchorOrigin={{ vertical: "top", horizontal: "center" }}
-      autoHideDuration={60000}
+      autoHideDuration={6000}
       TransitionComponent={snackbarTransition}
       onClose={() => dispatch(toastDown())}
     >
