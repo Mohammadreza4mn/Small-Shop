@@ -19,6 +19,10 @@ export const productStyles = (theme) =>
     price: {
       fontWeight: "bold !important",
     },
+    cardLoading: {
+      opacity: 0.3,
+      pointerEvents: "none",
+    },
   });
 
 export const productListStyles = (theme) =>
@@ -35,6 +39,15 @@ export const headerStyles = (theme) =>
     root: {
       justifyContent: "space-between",
     },
+    badge: {
+      "& .MuiBadge-anchorOriginTopRightRectangle": {
+        transform: "scale(0.6) translate(50%, -50%)",
+        background: "unset",
+      },
+      "& .MuiCircularProgress-svg": {
+        color: "red",
+      },
+    },
   });
 
 export const shoppingCartStyles = (theme) =>
@@ -48,5 +61,18 @@ export const shoppingCartStyles = (theme) =>
     listItem: {
       display: "flex",
       flexDirection: "column",
+    },
+  });
+
+export const numberControlStyles = (theme) =>
+  createStyles({
+    root: {
+      display: "flex",
+      alignItems: "center",
+    },
+    productCount: {
+      width: 30,
+      display: "flex",
+      justifyContent: "center",
     },
   });
