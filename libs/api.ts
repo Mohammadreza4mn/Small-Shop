@@ -13,7 +13,7 @@ export const productInfoAPI = (id: number) => localhost.get(`products/${id}`);
 export const addBasketAPI = (data: IProductBasket) =>
   localhost.post("shoppingCart", data);
 export const basketListAPI = () => localhost.get("shoppingCart");
-export const updateBasketAPI = (id: number, data: IProductBasket) =>
+export const updateBasketAPI = (id: number, data: { count: number }) =>
   localhost.patch(`shoppingCart/${id}`, data);
 export const removeItemBasketAPI = (id: number) =>
   localhost.delete(`shoppingCart/${id}`);

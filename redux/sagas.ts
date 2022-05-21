@@ -1,5 +1,4 @@
 import { call, put, takeEvery, all } from "redux-saga/effects";
-import { AnyAction } from "redux";
 import {
   basketListAPI,
   updateBasketAPI,
@@ -14,28 +13,69 @@ import {
   toastError,
   toastSuccess,
   addBasketSuccess,
+  loadingStart,
+  loadingEnd,
+  addBasket,
+  updateBasket,
+  removeItemBasket,
 } from "./action";
 
-function* handleAddBasket(action: AnyAction) {
+function* handleAddBasket(action: ReturnType<typeof addBasket>) {
   try {
+    yield put(
+      loadingStart({
+        store: "basket",
+        element: `btn__add-basket--${action.payload.id}`,
+      })
+    );
+
     yield call(addBasketAPI, action.payload);
+
     yield put(addBasketSuccess(action.payload));
     yield put(toastSuccess("محصول با موفقیت به سبد خرید اضافه شد"));
   } catch (error: any) {
     yield put(toastError(error.message));
+  } finally {
+    yield put(
+      loadingEnd({
+        store: "basket",
+        element: `btn__add-basket--${action.payload.id}`,
+      })
+    );
   }
 }
 function* handleGetBasket() {
   try {
+    yield put(
+      loadingStart({
+        store: "basket",
+        element: "badge__basket",
+      })
+    );
+
     const { data } = yield call(basketListAPI);
 
     yield put(getListBasketSuccess(data));
   } catch (error: any) {
     yield put(toastError(error.message));
+  } finally {
+    yield put(
+      loadingEnd({
+        store: "basket",
+        element: "badge__basket",
+      })
+    );
   }
 }
-function* handleChangeCountProduct(action: AnyAction) {
+function* handleChangeCountProduct(action: ReturnType<typeof updateBasket>) {
   try {
+    yield put(
+      loadingStart({
+        store: "basket",
+        element: `span__product-count--${action.payload.id}`,
+      })
+    );
+
     const { data } = yield call(
       updateBasketAPI,
       action.payload.id,
@@ -45,14 +85,36 @@ function* handleChangeCountProduct(action: AnyAction) {
     yield put(updateBasketSuccess(data));
   } catch (error: any) {
     yield put(toastError(error.message));
+  } finally {
+    yield put(
+      loadingEnd({
+        store: "basket",
+        element: `span__product-count--${action.payload.id}`,
+      })
+    );
   }
 }
-function* handleRemoveProduct(action: AnyAction) {
+function* handleRemoveProduct(action: ReturnType<typeof removeItemBasket>) {
   try {
+    yield put(
+      loadingStart({
+        store: "basket",
+        element: `card__product--${action.payload}`,
+      })
+    );
+
     yield call(removeItemBasketAPI, action.payload);
+
     yield put(removeItemBasketSuccess(action.payload));
   } catch (error: any) {
     yield put(toastError(error.message));
+  } finally {
+    yield put(
+      loadingEnd({
+        store: "basket",
+        element: `card__product--${action.payload}`,
+      })
+    );
   }
 }
 
