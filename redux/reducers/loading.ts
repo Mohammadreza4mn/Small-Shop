@@ -6,23 +6,22 @@ const inistialState: IInistialStateLoading = {
   basket: [],
   product: [],
 };
-// TODO دادن تایپ صحیح به اکشن
 const loading = (state = inistialState, action: AnyAction) => {
+  const {
+    store,
+    element,
+  }: { store: keyof IInistialStateLoading; element: string } = action.payload;
+
   switch (action.type) {
     case Loading.start:
       return {
         ...state,
-        [action.payload.store]: [
-          ...state[action.payload.store],
-          action.payload.element,
-        ],
+        [store]: [...state[store], element],
       };
     case Loading.end:
       return {
         ...state,
-        [action.payload.store]: state[action.payload.store].filter(
-          (item) => item !== action.payload.element
-        ),
+        [store]: state[store].filter((item) => item !== element),
       };
     default:
       return state;
