@@ -14,11 +14,13 @@ export default function Home({ products }: IProductListProps) {
 
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async ({ preview }) => {
-    const { data: list } = await productListAPI();
+    const { data: list, status } = await productListAPI();
 
     return {
       props: {
         products: list,
+        statusCode: status,
+        error: list.message,
       },
     };
   });
