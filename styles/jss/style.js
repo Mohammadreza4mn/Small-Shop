@@ -19,9 +19,14 @@ export const productStyles = (theme) =>
     price: {
       fontWeight: "bold !important",
     },
+    "@keyframes loading": {
+      "0%": { opacity: 1 },
+      "50%": { opacity: 0.3 },
+      "100%": { opacity: 1 },
+    },
     cardLoading: {
-      opacity: 0.3,
       pointerEvents: "none",
+      animation: "$loading 2s infinite",
     },
   });
 

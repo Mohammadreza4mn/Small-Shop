@@ -53,7 +53,7 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
 
   const generateClassCard = () => {
     if (productLoading.includes(ElementProduct.card_product + product.id)) {
-      return classes.cardLoading;
+      return `${classes.cardLoading} ${classes.root}`;
     } else {
       return classes.root;
     }
