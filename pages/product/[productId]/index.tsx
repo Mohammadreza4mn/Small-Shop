@@ -7,6 +7,7 @@ import {
   CardActions,
   makeStyles,
   Divider,
+  CircularProgress,
 } from "@material-ui/core";
 import { addBasket } from "../../../redux/action";
 import { wrapper } from "../../../redux/store";
@@ -15,8 +16,10 @@ import NumberControl from "../../../components/numberControl/NumberControl";
 import { productInfoAPI } from "../../../libs/api";
 import { productStyles } from "../../../styles/jss/style";
 import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
-import { selectBasket } from "../../../redux/selectors";
+import { selectBasket, selectLoading } from "../../../redux/selectors";
 import { IProduct } from "../../../utils/interface";
+import { ElementBasket } from "../../../utils/enum";
+import { ParsedUrlQuery } from "querystring";
 
 const useStyles = makeStyles(productStyles);
 
@@ -25,6 +28,30 @@ export default function Product({ productInfo }: { productInfo: IProduct }) {
   const classes = useStyles();
 
   const { list } = useAppSelector(selectBasket);
+  const { basket } = useAppSelector(selectLoading);
+
+  const generateCardActions = () => {
+    let index = list.findIndex(({ id }) => id == productInfo.id);
+
+    if (basket.includes(ElementBasket.btn_add_basket + productInfo.id)) {
+      return <CircularProgress />;
+    } else {
+      if (index == -1) {
+        return (
+          <Button
+            size="small"
+            color="primary"
+            variant="contained"
+            onClick={(e) => dispatch(addBasket({ ...productInfo, count: 1 }))}
+          >
+            افزودن به سبد خرید
+          </Button>
+        );
+      } else {
+        return <NumberControl product={list[index]} />;
+      }
+    }
+  };
 
   return (
     <Card className={classes.root}>
@@ -52,29 +79,20 @@ export default function Product({ productInfo }: { productInfo: IProduct }) {
         </Typography>
         <Divider />
       </CardContent>
-      <CardActions>
-        {list.some(({ id }) => id == productInfo.id) ? (
-          <NumberControl
-            product={list.find(({ id }) => id == productInfo.id)}
-          />
-        ) : (
-          <Button
-            size="small"
-            color="primary"
-            variant="contained"
-            onClick={() => dispatch(addBasket({ ...productInfo, count: 1 }))}
-          >
-            افزودن به سبد خرید
-          </Button>
-        )}
-      </CardActions>
+      <CardActions>{generateCardActions()}</CardActions>
     </Card>
   );
 }
 
 export const getServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async ({ params, preview }) => {
-    const { data: productInfo } = await productInfoAPI(params.productId);
+    interface IProductId extends ParsedUrlQuery {
+      productId: string;
+    }
+
+    const { productId } = params as IProductId;
+
+    const { data: productInfo } = await productInfoAPI(productId);
 
     return {
       props: {
