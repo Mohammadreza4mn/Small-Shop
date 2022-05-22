@@ -7,7 +7,7 @@ const localhost = axios.create({
 
 // product
 export const productListAPI = () => localhost.get("products");
-export const productInfoAPI = (id: number) => localhost.get(`products/${id}`);
+export const productInfoAPI = (id: string) => localhost.get(`products/${id}`);
 
 // basket
 export const addBasketAPI = (data: IProductBasket) =>

@@ -13,6 +13,7 @@ import { useEffect, useState } from "react";
 import { headerStyles } from "../../styles/jss/style";
 import { useAppSelector } from "../../redux/hooks";
 import { selectBasket, selectLoading } from "../../redux/selectors";
+import { ElementBasket } from "../../utils/enum";
 import { FC } from "react";
 
 const useStyles = makeStyles(headerStyles);
@@ -25,18 +26,16 @@ const Header: FC = () => {
 
   const [count, setCount] = useState<number>(0);
 
-  const generateCountBasket = () => {
+  useEffect(() => {
     if (list.length > 0) {
-      return list.reduce((total, { count }) => total + count, 0);
+      setCount(list.reduce((total, { count }) => total + count, 0));
     } else {
-      return 0;
+      setCount(0);
     }
-  };
-
-  useEffect(() => setCount(generateCountBasket()), [list]);
+  }, [list]);
 
   const generateShoppingCart = () => {
-    if (basket.includes("badge__basket")) {
+    if (basket.includes(ElementBasket.badge_basket)) {
       return (
         <Badge
           className={classes.badge}
