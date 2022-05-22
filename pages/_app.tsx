@@ -5,6 +5,8 @@ import { ThemeProvider, CssBaseline } from "@material-ui/core";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import theme from "../utils/theme";
 import createEmotionCache from "../utils/createEmotionCache";
+import { useRouter } from "next/router";
+import Loading from "../components/loading/Loading";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -17,16 +19,22 @@ function MyApp({
   pageProps,
   emotionCache = clientSideEmotionCache,
 }: MyAppProps) {
-  return (
-    <CacheProvider value={emotionCache}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ThemeProvider>
-    </CacheProvider>
-  );
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Loading />;
+  } else if (!router.isFallback) {
+    return (
+      <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </ThemeProvider>
+      </CacheProvider>
+    );
+  }
 }
 
 export default wrapper.withRedux(MyApp);
