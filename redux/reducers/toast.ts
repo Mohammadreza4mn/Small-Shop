@@ -1,6 +1,6 @@
-import { Toast } from "../action";
 import { AnyAction } from "redux";
 import { IInistialStateToast } from "../../utils/interface";
+import { Toast } from "../../utils/enum";
 
 const inistialState: IInistialStateToast = {
   severity: "info",

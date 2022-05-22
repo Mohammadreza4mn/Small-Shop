@@ -7,7 +7,6 @@ import {
 } from "../libs/api";
 import {
   getListBasketSuccess,
-  Basket,
   updateBasketSuccess,
   removeItemBasketSuccess,
   toastError,
@@ -19,7 +18,7 @@ import {
   updateBasket,
   removeItemBasket,
 } from "./action";
-import { ElementBasket, ElementProduct } from "../utils/enum";
+import { ElementBasket, ElementProduct, Basket } from "../utils/enum";
 
 function* handleAddBasket(action: ReturnType<typeof addBasket>) {
   try {
@@ -50,7 +49,7 @@ function* handleGetBasket() {
     yield put(
       loadingStart({
         store: "basket",
-        element: "badge__basket",
+        element: ElementBasket.badge_basket,
       })
     );
 
@@ -63,7 +62,7 @@ function* handleGetBasket() {
     yield put(
       loadingEnd({
         store: "basket",
-        element: "badge__basket",
+        element: ElementBasket.badge_basket,
       })
     );
   }

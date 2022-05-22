@@ -1,6 +1,6 @@
-import { Loading } from "../action";
 import { AnyAction } from "redux";
 import { IInistialStateLoading } from "../../utils/interface";
+import { Loading } from "../../utils/enum";
 
 const inistialState: IInistialStateLoading = {
   basket: [],

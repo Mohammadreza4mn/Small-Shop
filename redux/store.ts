@@ -12,7 +12,7 @@ const bindMiddleware = (middleware: any) => {
   return applyMiddleware(...middleware);
 };
 
-export const makeStore = (context: Context) => {
+export const makeStore = (context?: Context) => {
   const sagaMiddleware = createSagaMiddleware();
   const store: SagaStore = createStore(
     rootReducer,
@@ -23,7 +23,7 @@ export const makeStore = (context: Context) => {
 
   return store;
 };
-// TODO گذاشتن context برای فلگ
+
 let flag = makeStore();
 export type RootState = ReturnType<typeof flag.getState>;
 export type AppDispatch = typeof flag.dispatch;

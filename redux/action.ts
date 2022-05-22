@@ -11,19 +11,9 @@ import {
   IActionToastDown,
   IActionLoading,
 } from "../utils/interface";
+import { Basket, Toast, Loading } from "../utils/enum";
 
 // basket
-export enum Basket {
-  addBasket = "addBasket",
-  addBasketSuccess = "addBasketSuccess",
-  getListBasket = "getListBasket",
-  getListBasketSuccess = "getListBasketSuccess",
-  updateBasket = "updateBasket",
-  updateBasketSuccess = "updateBasketSuccess",
-  removeItemBasket = "removeItemBasket",
-  removeItemBasketSuccess = "removeItemBasketSuccess",
-}
-
 export const addBasket: IActionAddBasket = (payload) => {
   return { type: Basket.addBasket, payload };
 };
@@ -52,10 +42,6 @@ export const removeItemBasketSuccess: IActionBasketRemoveSuccess = (
 };
 
 // toast
-export enum Toast {
-  toggle = "toggle",
-}
-
 export const toastError: IActionToast = (message) => {
   return {
     type: Toast.toggle,
@@ -73,10 +59,6 @@ export const toastDown: IActionToastDown = () => {
 };
 
 // loading
-export enum Loading {
-  start = "start",
-  end = "end",
-}
 export const loadingStart: IActionLoading = (payload) => {
   return { type: Loading.start, payload };
 };
