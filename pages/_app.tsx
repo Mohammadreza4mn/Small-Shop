@@ -7,6 +7,7 @@ import theme from "../utils/theme";
 import createEmotionCache from "../utils/createEmotionCache";
 import { useRouter } from "next/router";
 import Loading from "../components/loading/Loading";
+import Error from "./_error";
 import "../styles/css/global.css";
 
 const clientSideEmotionCache = createEmotionCache();
@@ -24,7 +25,7 @@ function MyApp({
 
   if (router.isFallback) {
     return <Loading />;
-  } else if (!router.isFallback) {
+  } else if (!router.isFallback && pageProps.statusCode == 200) {
     return (
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
@@ -34,6 +35,10 @@ function MyApp({
           </Layout>
         </ThemeProvider>
       </CacheProvider>
+    );
+  } else {
+    return (
+      <Error statusCode={pageProps.statusCode} message={pageProps.error} />
     );
   }
 }
