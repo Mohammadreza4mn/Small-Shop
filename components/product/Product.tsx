@@ -11,7 +11,7 @@ import {
   CircularProgress,
 } from "@material-ui/core";
 import NumberControl from "../numberControl/NumberControl";
-import { productStyles } from "../../assets/jss/style";
+import { productStyles } from "../../styles/jss/style";
 import { IProduct } from "../../utils/interface";
 import { ElementBasket, ElementProduct } from "../../utils/enum";
 import Link from "next/link";

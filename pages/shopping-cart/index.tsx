@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 import NumberControl from "../../components/numberControl/NumberControl";
 import { useRouter } from "next/router";
-import { shoppingCartStyles } from "../../assets/jss/style";
+import { shoppingCartStyles } from "../../styles/jss/style";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../redux/hooks";
 import { selectBasket } from "../../redux/selectors";

@@ -13,7 +13,7 @@ import { wrapper } from "../../../redux/store";
 import { GetServerSideProps } from "next";
 import NumberControl from "../../../components/numberControl/NumberControl";
 import { productInfoAPI } from "../../../libs/api";
-import { productStyles } from "../../../assets/jss/style";
+import { productStyles } from "../../../styles/jss/style";
 import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
 import { selectBasket } from "../../../redux/selectors";
 import { IProduct } from "../../../utils/interface";

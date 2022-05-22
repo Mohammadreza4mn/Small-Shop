@@ -13,7 +13,7 @@ import { FC } from "react";
 import { IProductBasket } from "../../utils/interface";
 import { ElementBasket } from "../../utils/enum";
 import { selectLoading } from "../../redux/selectors";
-import { numberControlStyles } from "../../assets/jss/style";
+import { numberControlStyles } from "../../styles/jss/style";
 
 const useStyles = makeStyles(numberControlStyles);
 

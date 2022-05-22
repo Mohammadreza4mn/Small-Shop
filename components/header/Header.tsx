@@ -10,7 +10,7 @@ import Link from "next/link";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import HomeIcon from "@material-ui/icons/Home";
 import { useEffect, useState } from "react";
-import { headerStyles } from "../../assets/jss/style";
+import { headerStyles } from "../../styles/jss/style";
 import { useAppSelector } from "../../redux/hooks";
 import { selectBasket, selectLoading } from "../../redux/selectors";
 import { FC } from "react";

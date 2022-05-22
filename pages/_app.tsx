@@ -7,6 +7,7 @@ import theme from "../utils/theme";
 import createEmotionCache from "../utils/createEmotionCache";
 import { useRouter } from "next/router";
 import Loading from "../components/loading/Loading";
+import "../styles/css/global.css";
 
 const clientSideEmotionCache = createEmotionCache();
 

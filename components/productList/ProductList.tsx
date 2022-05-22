@@ -1,7 +1,7 @@
 import Product from "../product/Product";
 import { IProduct } from "../../utils/interface";
 import { makeStyles } from "@material-ui/core";
-import { productListStyles } from "../../assets/jss/style";
+import { productListStyles } from "../../styles/jss/style";
 import { FC } from "react";
 
 const useStyles = makeStyles(productListStyles);
