@@ -4,32 +4,23 @@
       "id": 1,
       "name": "کیبورد گیمینگ مکانیکی Rapoo مدل V500 PRO",
       "price": 1197000,
-      "img": "https://zaraya.ir/sam/wp-content/uploads/2021/08/daa9db8cd8a8d988d8b1d8af-daafdb8cd985db8cd986daaf-d985daa9d8a7d986db8cdaa9db8c-gigaware-d985d8afd984-k30_611c15f88431d.jpeg",
+      "img": "/images/rapoo.jpeg",
       "description": "درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان"
     },
     {
       "id": 2,
       "name": "لوستر 12 شعله چشمه نور کد C2735.6+6-BO",
       "price": 4275600,
-      "img": "https://dkstatics-public.digikala.com/digikala-products/114211379.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90",
+      "img": "/images/C2735.jpg",
       "description": "برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد"
     },
     {
       "id": 3,
       "name": "هودی مردانه کد HG6707",
       "price": 445000,
-      "img": "https://dkstatics-public.digikala.com/digikala-products/117563628.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80",
+      "img": "/images/HG6707.jpg",
       "description": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است"
     }
   ],
-  "shoppingCart": [
-    {
-      "id": 3,
-      "name": "هودی مردانه کد HG6707",
-      "price": 445000,
-      "img": "https://dkstatics-public.digikala.com/digikala-products/117563628.jpg?x-oss-process=image/resize,m_lfit,h_300,w_300/quality,q_80",
-      "description": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است",
-      "count": 5
-    }
-  ]
+  "shoppingCart": []
 }
