@@ -15,6 +15,7 @@ import { shoppingCartStyles } from "../../styles/jss/style";
 import { useEffect, useState } from "react";
 import { useAppSelector } from "../../redux/hooks";
 import { selectBasket } from "../../redux/selectors";
+import Image from "next/image";
 
 const useStyles = makeStyles(shoppingCartStyles);
 
@@ -26,7 +27,7 @@ export default function ShoppingCart() {
 
   const [totalPrice, setTotalPrice] = useState<number>(0);
 
-  const calculationTotalPrice = (): void => {
+  useEffect(() => {
     if (list.length > 0) {
       setTotalPrice(
         list.reduce((total, { count = 1, price }) => total + count * price, 0)
@@ -34,9 +35,7 @@ export default function ShoppingCart() {
     } else {
       setTotalPrice(0);
     }
-  };
-
-  useEffect(() => calculationTotalPrice(), [list]);
+  }, [list]);
 
   return (
     <div>
@@ -46,7 +45,7 @@ export default function ShoppingCart() {
             <ListItem key={index}>
               <ListItemAvatar>
                 <Avatar>
-                  <img src={item.img} />
+                  <Image src={item.img} alt={item.name} layout="fill" />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary={item.name} />
