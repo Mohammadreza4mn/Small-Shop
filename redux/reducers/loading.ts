@@ -10,7 +10,8 @@ const loading = (state = inistialState, action: AnyAction) => {
   const {
     store,
     element,
-  }: { store: keyof IInistialStateLoading; element: string } = action.payload;
+  }: { store: keyof IInistialStateLoading; element: string } =
+    action.payload || {};
 
   switch (action.type) {
     case Loading.start:
