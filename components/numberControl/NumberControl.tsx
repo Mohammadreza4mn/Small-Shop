@@ -24,14 +24,12 @@ const NumberControl: FC<{ product: IProductBasket }> = ({ product }) => {
   const { basket } = useAppSelector(selectLoading);
 
   const handleUpdateBasket = (status: "increment" | "decrement" | "remove") => {
+    let { count } = product;
+
     if (status == "increment") {
-      dispatch(
-        updateBasket({ id: product.id, data: { count: ++product.count } })
-      );
+      dispatch(updateBasket({ id: product.id, data: { count: ++count } }));
     } else if (status == "decrement") {
-      dispatch(
-        updateBasket({ id: product.id, data: { count: --product.count } })
-      );
+      dispatch(updateBasket({ id: product.id, data: { count: --count } }));
     } else if (status == "remove") {
       dispatch(removeItemBasket(product.id));
     }
