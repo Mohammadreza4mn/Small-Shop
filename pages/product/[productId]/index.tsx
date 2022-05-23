@@ -103,6 +103,7 @@ export const getServerSideProps: GetServerSideProps =
         productInfo: productInfo.data || null,
         statusCode: productInfo.status || null,
         error: productInfo.data.message || null,
+        pageTitle: productInfo.data.name || null,
       },
     };
   });

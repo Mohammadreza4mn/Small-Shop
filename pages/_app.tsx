@@ -33,7 +33,7 @@ function MyApp({
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Layout>
+          <Layout pageTitle={pageProps.pageTitle || "فروشگاه کوچک"}>
             <Component {...pageProps} />
           </Layout>
         </ThemeProvider>

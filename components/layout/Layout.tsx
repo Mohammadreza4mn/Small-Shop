@@ -5,11 +5,16 @@ import Toast from "../toast/Toast";
 import Head from "next/head";
 import { FC } from "react";
 
-const Layout: FC<{ children: PropsWithChildren<any> }> = ({ children }) => {
+const Layout: FC<{ children: PropsWithChildren<any>; pageTitle: string }> = ({
+  children,
+  pageTitle,
+}) => {
   return (
     <>
       <Head>
-        <title>Small Shop</title>
+        <title>{pageTitle}</title>
+        <link rel="icon" href="/static/images/favicon.ico" />
+        <meta name="keywords" content="فروشگاه، خرید، لوازم جانبی" />
       </Head>
       <Header />
       <Toast />
