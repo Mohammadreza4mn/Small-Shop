@@ -24,9 +24,9 @@ export const makeStore = (context?: Context) => {
   return store;
 };
 
-let flag = makeStore();
-export type RootState = ReturnType<typeof flag.getState>;
-export type AppDispatch = typeof flag.dispatch;
+let flagStore = createStore(rootReducer);
+export type RootState = ReturnType<typeof flagStore.getState>;
+export type AppDispatch = typeof flagStore.dispatch;
 
 export const wrapper = createWrapper(makeStore, {
   debug: true,
