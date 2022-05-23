@@ -1,0 +1,29 @@
+.page404Container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.page404Container p {
+  font-size: 120px;
+  color: #9b9898;
+  font-weight: bold;
+  margin: 0;
+}
+.page404MessageEn {
+  direction: rtl;
+}
+.page404Btn {
+  margin-top: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  background-color: #194ba9;
+  width: 150px;
+  height: 35px;
+  border-radius: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
