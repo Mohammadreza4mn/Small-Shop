@@ -20,10 +20,15 @@ import { selectBasket, selectLoading } from "../../../redux/selectors";
 import { IProduct } from "../../../utils/interface";
 import { ElementBasket } from "../../../utils/enum";
 import { ParsedUrlQuery } from "querystring";
+import { ReactElement } from "react";
 
 const useStyles = makeStyles(productStyles);
 
-export default function Product({ productInfo }: { productInfo: IProduct }) {
+export default function Product({
+  productInfo,
+}: {
+  productInfo: IProduct;
+}): ReactElement {
   const dispatch = useAppDispatch();
   const classes = useStyles();
 
@@ -89,14 +94,15 @@ export const getServerSideProps: GetServerSideProps =
     interface IProductId extends ParsedUrlQuery {
       productId: string;
     }
-
     const { productId } = params as IProductId;
 
-    const { data: productInfo } = await productInfoAPI(productId);
+    const [productInfo] = await Promise.all([productInfoAPI(productId)]);
 
     return {
       props: {
-        productInfo: productInfo,
+        productInfo: productInfo.data || null,
+        statusCode: productInfo.status || null,
+        error: productInfo.data.message || null,
       },
     };
   });
