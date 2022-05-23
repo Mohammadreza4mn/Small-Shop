@@ -1,7 +1,8 @@
 import { Button, Box, Typography } from "@material-ui/core";
 import { useRouter } from "next/router";
+import { ReactElement } from "react";
 
-export default function Custom500() {
+export default function Custom500(): ReactElement {
   const Router = useRouter();
 
   return (

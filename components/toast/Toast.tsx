@@ -4,12 +4,13 @@ import Alert from "@material-ui/lab/Alert";
 import { toastDown } from "../../redux/action";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { selectToast } from "../../redux/selectors";
+import { FC } from "react";
 
 const snackbarTransition = (props: JSX.IntrinsicAttributes & SlideProps) => {
   return <Slide {...props} direction="down" />;
 };
 
-const Toast = (): JSX.Element => {
+const Toast: FC = () => {
   const dispatch = useAppDispatch();
   const { severity, toggle, message } = useAppSelector(selectToast);
 

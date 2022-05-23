@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import Loading from "../components/loading/Loading";
 import Error from "./_error";
 import "../styles/css/global.css";
+import { ReactElement } from "react";
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -20,12 +21,14 @@ function MyApp({
   Component,
   pageProps,
   emotionCache = clientSideEmotionCache,
-}: MyAppProps) {
+}: MyAppProps): ReactElement {
   const router = useRouter();
 
-  if (router.isFallback) {
-    return <Loading />;
-  } else if (!router.isFallback && pageProps.statusCode == 200) {
+  if (router.isFallback) return <Loading />;
+  else if (
+    !router.isFallback &&
+    (pageProps.statusCode ? pageProps.statusCode == 200 || false : true)
+  )
     return (
       <CacheProvider value={emotionCache}>
         <ThemeProvider theme={theme}>
@@ -36,11 +39,10 @@ function MyApp({
         </ThemeProvider>
       </CacheProvider>
     );
-  } else {
+  else
     return (
       <Error statusCode={pageProps.statusCode} message={pageProps.error} />
     );
-  }
 }
 
 export default wrapper.withRedux(MyApp);

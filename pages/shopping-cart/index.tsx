@@ -12,14 +12,14 @@ import {
 import NumberControl from "../../components/numberControl/NumberControl";
 import { useRouter } from "next/router";
 import { shoppingCartStyles } from "../../styles/jss/style";
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { useAppSelector } from "../../redux/hooks";
 import { selectBasket } from "../../redux/selectors";
 import Image from "next/image";
 
 const useStyles = makeStyles(shoppingCartStyles);
 
-export default function ShoppingCart() {
+export default function ShoppingCart(): ReactElement {
   const Router = useRouter();
   const classes = useStyles();
 
@@ -38,7 +38,7 @@ export default function ShoppingCart() {
   }, [list]);
 
   return (
-    <div>
+    <>
       {list.length > 0 ? (
         <List dense={true} className={classes.listItem}>
           {list.map((item, index) => (
@@ -67,6 +67,6 @@ export default function ShoppingCart() {
           </Button>
         </Box>
       )}
-    </div>
+    </>
   );
 }
