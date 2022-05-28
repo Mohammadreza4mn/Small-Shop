@@ -12,8 +12,6 @@ import { ServerStyleSheets } from "@material-ui/styles";
 import createEmotionServer from "@emotion/server/create-instance";
 import createEmotionCache from "../utils/createEmotionCache";
 
-// TODO overwrite type DocumentInitialProps (React.Elements)
-
 export default class MyDocument extends Document {
   render() {
     return (
@@ -40,7 +38,9 @@ export default class MyDocument extends Document {
 
 // `getInitialProps` belongs to `_document` (instead of `_app`),
 // it's compatible with static-site generation (SSG).
-MyDocument.getInitialProps = async (ctx: DocumentContext) => {
+MyDocument.getInitialProps = async (
+  ctx: DocumentContext
+): Promise<DocumentInitialProps> => {
   // Resolution order
   //
   // On the server:
