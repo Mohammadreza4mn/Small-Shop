@@ -1,7 +1,6 @@
 import {
   Button,
   Card,
-  CardMedia,
   CardContent,
   Typography,
   CardActions,
@@ -14,15 +13,16 @@ import { wrapper } from "../../../redux/store";
 import { GetServerSideProps } from "next";
 import NumberControl from "../../../components/numberControl/NumberControl";
 import { productInfoAPI } from "../../../libs/api";
-import { productStyles } from "../../../styles/jss/style";
+import { productInfoStyles } from "../../../styles/jss/style";
 import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
 import { selectBasket, selectLoading } from "../../../redux/selectors";
 import { IProduct } from "../../../utils/interface";
 import { ElementBasket } from "../../../utils/enum";
 import { ParsedUrlQuery } from "querystring";
 import { ReactElement } from "react";
+import Image from "next/image";
 
-const useStyles = makeStyles(productStyles);
+const useStyles = makeStyles(productInfoStyles);
 
 export default function Product({
   productInfo,
@@ -60,10 +60,15 @@ export default function Product({
 
   return (
     <Card className={classes.root}>
-      <CardMedia
-        className={classes.media}
-        image={productInfo.img}
-        title={productInfo.name}
+      <Image
+        src={productInfo.img}
+        alt={productInfo.name}
+        layout="responsive"
+        width={100}
+        height={50}
+        objectFit="contain"
+        blurDataURL="/images/Loading_icon.gif"
+        placeholder="blur"
       />
       <Divider />
       <CardContent>

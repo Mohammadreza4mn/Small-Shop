@@ -2,13 +2,13 @@ import { addBasket } from "../../redux/action";
 import {
   Button,
   Card,
-  CardMedia,
   CardContent,
   Typography,
   CardActions,
   makeStyles,
   Divider,
   CircularProgress,
+  Box,
 } from "@material-ui/core";
 import NumberControl from "../numberControl/NumberControl";
 import { productStyles } from "../../styles/jss/style";
@@ -18,6 +18,7 @@ import Link from "next/link";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { selectBasket, selectLoading } from "../../redux/selectors";
 import { FC } from "react";
+import Image from "next/image";
 
 const useStyles = makeStyles(productStyles);
 
@@ -62,11 +63,18 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
   return (
     <Card className={generateClassCard()}>
       <Link href={`product/${product.id}`}>
-        <CardMedia
-          className={classes.media}
-          image={product.img}
-          title={product.name}
-        />
+        <Box className={classes.img}>
+          <Image
+            src={product.img}
+            alt={product.name}
+            layout="responsive"
+            width={100}
+            height={50}
+            objectFit="contain"
+            blurDataURL="/images/Loading_icon.gif"
+            placeholder="blur"
+          />
+        </Box>
       </Link>
       <Divider />
       <CardContent>
