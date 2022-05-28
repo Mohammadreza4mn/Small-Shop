@@ -45,7 +45,13 @@ export default function ShoppingCart(): ReactElement {
             <ListItem key={index}>
               <ListItemAvatar>
                 <Avatar>
-                  <Image src={item.img} alt={item.name} layout="fill" />
+                  <Image
+                    src={item.img}
+                    alt={item.name}
+                    layout="fill"
+                    blurDataURL="/images/Loading_icon.gif"
+                    placeholder="blur"
+                  />
                 </Avatar>
               </ListItemAvatar>
               <ListItemText primary={item.name} />
