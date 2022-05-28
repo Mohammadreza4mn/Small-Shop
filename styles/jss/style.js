@@ -5,11 +5,10 @@ export const productStyles = (theme) =>
     root: {
       display: "flex",
       flexDirection: "column",
-      justifyContent: "end",
     },
-    media: {
-      height: 220,
-      backgroundSize: "contain !important",
+    img: {
+      cursor: "pointer",
+      marginBottom: "auto",
     },
     description: {
       overflow: "hidden",
@@ -30,12 +29,28 @@ export const productStyles = (theme) =>
     },
   });
 
+export const productInfoStyles = (theme) =>
+  createStyles({
+    root: {
+      display: "flex",
+      flexDirection: "column",
+      maxHeight: "50vh",
+      "& .MuiCardActions-root": {
+        justifyContent: "center",
+      },
+    },
+    price: {
+      fontWeight: "bold !important",
+    },
+  });
+
 export const productListStyles = (theme) =>
   createStyles({
     list: {
       display: "grid",
       gridTemplateColumns: "repeat(3, minmax(0, 1fr))",
       gap: 10,
+      margin: "0 10px",
     },
   });
 
