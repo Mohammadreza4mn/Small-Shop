@@ -13,7 +13,7 @@ const Layout: FC<{ children: PropsWithChildren<any>; pageTitle: string }> = ({
     <>
       <Head>
         <title>{pageTitle}</title>
-        <link rel="icon" href="/static/images/favicon.png" />
+        <link rel="icon" href="/images/favicon.png" />
         <meta name="keywords" content="فروشگاه، خرید، لوازم جانبی" />
       </Head>
       <Header />
