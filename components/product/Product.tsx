@@ -97,7 +97,7 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
           variant="body1"
           component="p"
         >
-          {`${product.price.toLocaleString()} تومان`}
+          {`${product.price.toLocaleString("fa-IR")} تومان`}
         </Typography>
         <Divider />
       </CardContent>

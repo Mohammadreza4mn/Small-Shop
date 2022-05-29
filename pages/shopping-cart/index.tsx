@@ -58,7 +58,7 @@ export default function ShoppingCart(): ReactElement {
               <NumberControl product={item} />
             </ListItem>
           ))}
-          <Chip label={`جمع کل: ${totalPrice.toLocaleString()} تومان`} />
+          <Chip label={`جمع کل: ${totalPrice.toLocaleString("fa-IR")} تومان`} />
         </List>
       ) : (
         <Box className={classes.root}>

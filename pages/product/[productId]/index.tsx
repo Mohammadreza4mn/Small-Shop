@@ -85,7 +85,7 @@ export default function Product({
           variant="body1"
           component="p"
         >
-          {`${productInfo.price.toLocaleString()} تومان`}
+          {`${productInfo.price.toLocaleString("fa-IR")} تومان`}
         </Typography>
         <Divider />
       </CardContent>
