@@ -2,8 +2,13 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Before the project:
 
-1- npm install -g json-server
-2- create a file db.json
+1- npm install json-server :
+
+```bash
+npm install -g json-server
+```
+
+2- create a file db.json <br>
 3- copy and paste to db.json:
 
 ```bash
@@ -35,5 +40,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 }
 ```
 
-4- terminal run command > json-server --watch db.json --port 3001
+4- terminal run command :
+
+```bash
+ json-server --watch db.json --port 3001
+```
+
 5- open [Vercel](http://small-shop-snowy.vercel.app/)
