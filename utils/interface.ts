@@ -87,3 +87,14 @@ export interface IActionLoading {
     payload: { store: listStoreForLoading; element: string };
   };
 }
+
+// interface utils/functions
+export interface ISeparatorsNumber {
+  ({
+    price,
+    currencyUnit,
+  }: {
+    price: number | string;
+    currencyUnit: "fa-IR" | "en-US";
+  }): string;
+}

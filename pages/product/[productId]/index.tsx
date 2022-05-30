@@ -21,6 +21,7 @@ import { ElementBasket } from "../../../utils/enum";
 import { ParsedUrlQuery } from "querystring";
 import { ReactElement } from "react";
 import Image from "next/image";
+import { separatorsNumber } from "../../../utils/functions";
 
 const useStyles = makeStyles(productInfoStyles);
 
@@ -85,7 +86,10 @@ export default function Product({
           variant="body1"
           component="p"
         >
-          {`${productInfo.price.toLocaleString("fa-IR")} تومان`}
+          {separatorsNumber({
+            price: productInfo.price,
+            currencyUnit: "fa-IR",
+          })}
         </Typography>
         <Divider />
       </CardContent>

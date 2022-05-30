@@ -19,6 +19,7 @@ import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { selectBasket, selectLoading } from "../../redux/selectors";
 import { FC } from "react";
 import Image from "next/image";
+import { separatorsNumber } from "../../utils/functions";
 
 const useStyles = makeStyles(productStyles);
 
@@ -97,7 +98,7 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
           variant="body1"
           component="p"
         >
-          {`${product.price.toLocaleString("fa-IR")} تومان`}
+          {separatorsNumber({ price: product.price, currencyUnit: "fa-IR" })}
         </Typography>
         <Divider />
       </CardContent>
