@@ -6,7 +6,6 @@ import {
   makeStyles,
   CircularProgress,
 } from "@material-ui/core";
-import Link from "next/link";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import HomeIcon from "@material-ui/icons/Home";
 import { useEffect, useState } from "react";
@@ -15,6 +14,7 @@ import { useAppSelector } from "../../redux/hooks";
 import { selectBasket, selectLoading } from "../../redux/selectors";
 import { ElementBasket } from "../../utils/enum";
 import { FC } from "react";
+import CustomLink from "../customLink/CustomLink";
 
 const useStyles = makeStyles(headerStyles);
 
@@ -57,14 +57,12 @@ const Header: FC = () => {
   return (
     <AppBar position="fixed">
       <Toolbar className={classes.root}>
-        <IconButton>
-          <Link href="/">
-            <HomeIcon fontSize="large" />
-          </Link>
-        </IconButton>
-        <IconButton>
-          <Link href="/shopping-cart">{generateShoppingCart()}</Link>
-        </IconButton>
+        <CustomLink href="/" title="فروشگاه">
+          <HomeIcon fontSize="large" />
+        </CustomLink>
+        <CustomLink href="/shopping-cart" title="سبد خرید">
+          {generateShoppingCart()}
+        </CustomLink>
       </Toolbar>
     </AppBar>
   );

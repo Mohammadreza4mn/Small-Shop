@@ -1,3 +1,10 @@
 body {
   margin: unset;
 }
+
+a,
+a:active,
+a:visited {
+  color: unset;
+  text-decoration: none;
+}

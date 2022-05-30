@@ -14,12 +14,12 @@ import NumberControl from "../numberControl/NumberControl";
 import { productStyles } from "../../styles/jss/style";
 import { IProduct } from "../../utils/interface";
 import { ElementBasket, ElementProduct } from "../../utils/enum";
-import Link from "next/link";
 import { useAppSelector, useAppDispatch } from "../../redux/hooks";
 import { selectBasket, selectLoading } from "../../redux/selectors";
 import { FC } from "react";
 import Image from "next/image";
 import { separatorsNumber } from "../../utils/functions";
+import CustomLink from "../customLink/CustomLink";
 
 const useStyles = makeStyles(productStyles);
 
@@ -63,7 +63,7 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
 
   return (
     <Card className={generateClassCard()}>
-      <Link href={`product/${product.id}`}>
+      <CustomLink href={`product/${product.id}`} title={product.name}>
         <Box className={classes.img}>
           <Image
             src={product.img}
@@ -76,7 +76,7 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
             placeholder="blur"
           />
         </Box>
-      </Link>
+      </CustomLink>
       <Divider />
       <CardContent>
         <Typography gutterBottom variant="h5" component="h2">
@@ -90,7 +90,9 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
         >
           {product.description}
         </Typography>
-        <Link href={`product/${product.id}`}>اطلاعات بیشتر</Link>
+        <CustomLink href={`product/${product.id}`} title={product.name}>
+          اطلاعات بیشتر
+        </CustomLink>
         <Divider />
         <Typography
           className={classes.price}
