@@ -16,6 +16,7 @@ import { ReactElement, useEffect, useState } from "react";
 import { useAppSelector } from "../../redux/hooks";
 import { selectBasket } from "../../redux/selectors";
 import Image from "next/image";
+import { separatorsNumber } from "../../utils/functions";
 
 const useStyles = makeStyles(shoppingCartStyles);
 
@@ -58,7 +59,12 @@ export default function ShoppingCart(): ReactElement {
               <NumberControl product={item} />
             </ListItem>
           ))}
-          <Chip label={`جمع کل: ${totalPrice.toLocaleString("fa-IR")} تومان`} />
+          <Chip
+            label={`جمع کل: ${separatorsNumber({
+              price: totalPrice,
+              currencyUnit: "fa-IR",
+            })}`}
+          />
         </List>
       ) : (
         <Box className={classes.root}>

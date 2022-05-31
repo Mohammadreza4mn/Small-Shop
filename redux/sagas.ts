@@ -44,6 +44,7 @@ function* handleAddBasket(action: ReturnType<typeof addBasket>) {
     );
   }
 }
+
 function* handleGetBasket() {
   try {
     yield put(
@@ -67,6 +68,7 @@ function* handleGetBasket() {
     );
   }
 }
+
 function* handleChangeCountProduct(action: ReturnType<typeof updateBasket>) {
   try {
     yield put(
@@ -94,6 +96,7 @@ function* handleChangeCountProduct(action: ReturnType<typeof updateBasket>) {
     );
   }
 }
+
 function* handleRemoveProduct(action: ReturnType<typeof removeItemBasket>) {
   try {
     yield put(
