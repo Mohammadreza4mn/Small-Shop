@@ -47,6 +47,7 @@ const ProgressBar: FC = () => {
       router.events.off("routeChangeStart", handleStart);
       router.events.off("routeChangeComplete", handleStop);
       router.events.off("routeChangeError", handleStop);
+      handleStop();
     };
   }, [router]);
 
