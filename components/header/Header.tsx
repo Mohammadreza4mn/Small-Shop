@@ -2,7 +2,6 @@ import {
   AppBar,
   Toolbar,
   Badge,
-  IconButton,
   makeStyles,
   CircularProgress,
 } from "@material-ui/core";
@@ -15,6 +14,7 @@ import { selectBasket, selectLoading } from "../../redux/selectors";
 import { ElementBasket } from "../../utils/enum";
 import { FC } from "react";
 import CustomLink from "../customLink/CustomLink";
+import ProgressBar from "../loading/ProgressBar";
 
 const useStyles = makeStyles(headerStyles);
 
@@ -56,6 +56,7 @@ const Header: FC = () => {
 
   return (
     <AppBar position="fixed">
+      <ProgressBar />
       <Toolbar className={classes.root}>
         <CustomLink href="/" title="فروشگاه">
           <HomeIcon fontSize="large" />

@@ -96,3 +96,17 @@ export const numberControlStyles = (theme) =>
       justifyContent: "center",
     },
   });
+
+export const progressBarStyles = (theme) =>
+  createStyles({
+    root: {
+      zIndex: 9999,
+      backgroundColor: theme.palette.primary.main,
+      "& .MuiLinearProgress-bar": {
+        backgroundColor: "yellowgreen",
+      },
+    },
+    hidden: {
+      visibility: "hidden",
+    },
+  });
