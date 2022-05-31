@@ -1,5 +1,5 @@
 import { LinearProgress, makeStyles } from "@material-ui/core";
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, memo } from "react";
 import { useRouter } from "next/router";
 import { progressBarStyles } from "../../styles/jss/style";
 
@@ -60,4 +60,4 @@ const ProgressBar: FC = () => {
   );
 };
 
-export default ProgressBar;
+export default memo(ProgressBar);
