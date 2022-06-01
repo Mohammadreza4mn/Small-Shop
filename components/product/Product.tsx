@@ -1,57 +1,30 @@
-import { addBasket } from "../../redux/action";
 import {
-  Button,
   Card,
   CardContent,
   Typography,
   CardActions,
   makeStyles,
   Divider,
-  CircularProgress,
   Box,
 } from "@material-ui/core";
-import NumberControl from "../numberControl/NumberControl";
 import { productStyles } from "../../styles/jss/style";
 import { IProduct } from "../../utils/interface";
 import { ElementBasket, ElementProduct } from "../../utils/enum";
-import { useAppSelector, useAppDispatch } from "../../redux/hooks";
+import { useAppSelector } from "../../redux/hooks";
 import { selectBasket, selectLoading } from "../../redux/selectors";
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import Image from "next/image";
 import { separatorsNumber } from "../../utils/functions";
 import CustomLink from "../customLink/CustomLink";
+import { generateCardActions } from "../../helpers/productCard";
 
 const useStyles = makeStyles(productStyles);
 
 const Product: FC<{ product: IProduct }> = ({ product }) => {
-  const dispatch = useAppDispatch();
   const classes = useStyles();
 
   const { list } = useAppSelector(selectBasket);
   const { product: productLoading, basket } = useAppSelector(selectLoading);
-
-  const generateCardActions = () => {
-    let index = list.findIndex(({ id }) => id == product.id);
-
-    if (basket.includes(ElementBasket.btn_add_basket + product.id)) {
-      return <CircularProgress />;
-    } else {
-      if (index == -1) {
-        return (
-          <Button
-            size="small"
-            color="primary"
-            variant="contained"
-            onClick={(e) => dispatch(addBasket({ ...product, count: 1 }))}
-          >
-            افزودن به سبد خرید
-          </Button>
-        );
-      } else {
-        return <NumberControl product={list[index]} />;
-      }
-    }
-  };
 
   const generateClassCard = () => {
     if (productLoading.includes(ElementProduct.card_product + product.id)) {
@@ -60,6 +33,13 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
       return classes.root;
     }
   };
+
+  const generateBtn = generateCardActions({
+    zone: basket,
+    element: ElementBasket.btn_add_basket + product.id,
+    product,
+    list,
+  });
 
   return (
     <Card className={generateClassCard()}>
@@ -104,7 +84,7 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
         </Typography>
         <Divider />
       </CardContent>
-      <CardActions>{generateCardActions()}</CardActions>
+      <CardActions>{generateBtn as ReactNode}</CardActions>
     </Card>
   );
 };
