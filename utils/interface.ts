@@ -1,4 +1,5 @@
 import { Color } from "@material-ui/lab";
+import { ReactElement } from "react";
 
 // interface store
 type listStoreForLoading = "basket" | "product";
@@ -97,4 +98,26 @@ export interface ISeparatorsNumber {
     price: number | string;
     currencyUnit: "fa-IR" | "en-US";
   }): string;
+}
+
+// interface utils/helpers
+export interface IFindLoading {
+  zone: Array<string>;
+  element: string;
+  exprIfTrue: ReactElement;
+  exprIfFalse: Function;
+}
+
+export interface IFindBasket {
+  list: IProductBasket[];
+  id: number;
+  exprIfTrue: Function;
+  exprIfFalse: ReactElement;
+}
+
+export interface IGenerateCardActions {
+  zone: Array<string>;
+  element: string;
+  product: IProductBasket | IProduct;
+  list: IProductBasket[];
 }

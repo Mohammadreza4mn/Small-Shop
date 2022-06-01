@@ -1,27 +1,24 @@
 import {
-  Button,
   Card,
   CardContent,
   Typography,
   CardActions,
   makeStyles,
   Divider,
-  CircularProgress,
 } from "@material-ui/core";
-import { addBasket } from "../../../redux/action";
 import { wrapper } from "../../../redux/store";
 import { GetServerSideProps } from "next";
-import NumberControl from "../../../components/numberControl/NumberControl";
 import { productInfoAPI } from "../../../libs/api";
 import { productInfoStyles } from "../../../styles/jss/style";
-import { useAppSelector, useAppDispatch } from "../../../redux/hooks";
+import { useAppSelector } from "../../../redux/hooks";
 import { selectBasket, selectLoading } from "../../../redux/selectors";
 import { IProduct } from "../../../utils/interface";
 import { ElementBasket } from "../../../utils/enum";
 import { ParsedUrlQuery } from "querystring";
-import { ReactElement } from "react";
+import { ReactElement, ReactNode } from "react";
 import Image from "next/image";
 import { separatorsNumber } from "../../../utils/functions";
+import { generateCardActions } from "../../../helpers/productCard";
 
 const useStyles = makeStyles(productInfoStyles);
 
@@ -30,34 +27,17 @@ export default function Product({
 }: {
   productInfo: IProduct;
 }): ReactElement {
-  const dispatch = useAppDispatch();
   const classes = useStyles();
 
   const { list } = useAppSelector(selectBasket);
   const { basket } = useAppSelector(selectLoading);
 
-  const generateCardActions = () => {
-    let index = list.findIndex(({ id }) => id == productInfo.id);
-
-    if (basket.includes(ElementBasket.btn_add_basket + productInfo.id)) {
-      return <CircularProgress />;
-    } else {
-      if (index == -1) {
-        return (
-          <Button
-            size="small"
-            color="primary"
-            variant="contained"
-            onClick={(e) => dispatch(addBasket({ ...productInfo, count: 1 }))}
-          >
-            افزودن به سبد خرید
-          </Button>
-        );
-      } else {
-        return <NumberControl product={list[index]} />;
-      }
-    }
-  };
+  const generateBtn = generateCardActions({
+    zone: basket,
+    element: ElementBasket.btn_add_basket + productInfo.id,
+    product: productInfo,
+    list,
+  });
 
   return (
     <Card className={classes.root}>
@@ -93,7 +73,7 @@ export default function Product({
         </Typography>
         <Divider />
       </CardContent>
-      <CardActions>{generateCardActions()}</CardActions>
+      <CardActions>{generateBtn as ReactNode}</CardActions>
     </Card>
   );
 }
