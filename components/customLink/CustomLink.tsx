@@ -5,10 +5,13 @@ const CustomLink: FC<{
   children: PropsWithChildren<any>;
   href: string;
   title: string;
-}> = ({ children, href, title }) => {
+  target?: "_blank" | "_self";
+}> = ({ children, href, title, target = "_self" }) => {
   return (
     <Link href={href} passHref>
-      <a title={title}>{children}</a>
+      <a title={title} target={target}>
+        {children}
+      </a>
     </Link>
   );
 };

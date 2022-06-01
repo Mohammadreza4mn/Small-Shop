@@ -43,7 +43,11 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
 
   return (
     <Card className={generateClassCard()}>
-      <CustomLink href={`product/${product.id}`} title={product.name}>
+      <CustomLink
+        target="_blank"
+        href={`product/${product.id}`}
+        title={product.name}
+      >
         <Box className={classes.img}>
           <Image
             src={product.img}
@@ -70,7 +74,11 @@ const Product: FC<{ product: IProduct }> = ({ product }) => {
         >
           {product.description}
         </Typography>
-        <CustomLink href={`product/${product.id}`} title={product.name}>
+        <CustomLink
+          target="_blank"
+          href={`product/${product.id}`}
+          title={product.name}
+        >
           اطلاعات بیشتر
         </CustomLink>
         <Divider />
